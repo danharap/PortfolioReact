@@ -40,32 +40,24 @@ export const projectsData = [
         "State management using Angular services and reactive patterns",
         "Custom validators and form controls for enhanced user experience",
         "Modular component structure with reusable UI elements and shared services"
-      ],
-      screenshots: [
-        {
-          title: "Secure Authentication System",
-          image: "/images/taskmanager/login.png",
-          description: "Professional login interface with JWT authentication, input validation, and secure password handling"
-        },
-        {
+      ],      screenshots: [{
           title: "Main Dashboard Overview",
           image: "/images/taskmanager/Dashboard.png",
           description: "Comprehensive task dashboard with priority indicators, completion tracking, and quick action buttons"
+        },        {
+          title: "Advanced Task Management",
+          image: "/images/taskmanager/TaskManagement.png",
+          description: "Hierarchical task organization with unlimited subtask nesting, priority levels, and status tracking"
         },
         {
-          title: "Advanced Task Management",
+          title: "Subtask Management",
           image: "/images/taskmanager/Subtasks.png",
-          description: "Hierarchical task organization with unlimited subtask nesting, priority levels, and status tracking"
+          description: "Detailed subtask breakdown with hierarchical organization and progress tracking"
         },
         {
           title: "Integrated Calendar View",
           image: "/images/taskmanager/Calendar.png",
           description: "Visual task scheduling with monthly, weekly, and daily calendar views using angular-calendar"
-        },
-        {
-          title: "Administrative Controls",
-          image: "/images/taskmanager/AdminSidebar.png",
-          description: "Comprehensive admin panel for user management, role assignment, and system configuration"
         },
         {
           title: "User Management Panel",
@@ -76,21 +68,24 @@ export const projectsData = [
           title: "Account Settings",
           image: "/images/taskmanager/Settings.png",
           description: "Secure account management with username updates and password change functionality"
+        },        {
+          title: "Analytics Dashboard",
+          image: "/images/taskmanager/Analytics.png",
+          description: "Comprehensive analytics and reporting dashboard with task completion metrics"
         },
         {
-          title: "Dark Theme Support",
-          image: "/images/taskmanager/Darkmode.png",
-          description: "Professional dark theme implementation with persistent user preferences"
+          title: "Help & Documentation",
+          image: "/images/taskmanager/HelpPage.png",
+          description: "Built-in help system with comprehensive documentation and user guides"
         },
         {
+          title: "Technical Documentation",
+          image: "/images/taskmanager/DevDocs.png",
+          description: "Developer documentation and technical specifications for the application"
+        },        {
           title: "Real-time Notifications",
           image: "/images/taskmanager/Notification.png",
           description: "Comprehensive notification system with real-time updates and user feedback"
-        },
-        {
-          title: "Notification Management",
-          image: "/images/taskmanager/NotificationList.png",
-          description: "Centralized notification center with message history and status tracking"
         }
       ],
       architecture: {
