@@ -1,25 +1,41 @@
 import React from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const ProjectsSection = ({ darkMode }) => {
+  const [titleRef, isTitleVisible] = useScrollAnimation();
+  const [projectsRef, isProjectsVisible] = useScrollAnimation({ rootMargin: '0px 0px -100px 0px' });
+
   return (
     <section id="projects" className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-16 transition-all duration-800 ${
+            isTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Featured Projects
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsData.map((project) => (
+        </div>        
+        <div 
+          ref={projectsRef}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {projectsData.map((project, index) => (
             <div 
               key={project.id} 
-              className={`rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105 ${
+              className={`rounded-lg overflow-hidden shadow-lg transition-all duration-800 hover:scale-105 ${
                 darkMode ? 'bg-gray-900' : 'bg-white'
+              } ${
+                isProjectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
+              style={{ 
+                transitionDelay: isProjectsVisible ? `${index * 200}ms` : '0ms' 
+              }}
             >
               <div className={`p-8 text-center ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
                 <div className="text-6xl mb-4">{project.image}</div>

@@ -1,11 +1,20 @@
 import React from 'react';
 import { Mail, MapPin, Linkedin, Github } from 'lucide-react';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const ContactSection = ({ darkMode, formData, handleInputChange, handleSubmit }) => {
+  const [titleRef, isTitleVisible] = useScrollAnimation();
+  const [contentRef, isContentVisible] = useScrollAnimation({ rootMargin: '0px 0px -100px 0px' });
+
   return (
     <section id="contact" className="py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-16 transition-all duration-800 ${
+            isTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Get In Touch
           </h2>
@@ -14,9 +23,13 @@ const ContactSection = ({ darkMode, formData, handleInputChange, handleSubmit })
             I'm always interested in new opportunities and exciting projects. 
             Let's connect and discuss how we can work together!
           </p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-12">
+        </div>        
+        <div 
+          ref={contentRef}
+          className={`grid md:grid-cols-2 gap-12 transition-all duration-1000 delay-300 ${
+            isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           {/* Contact Form */}
           <div className={`p-8 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-50'} shadow-lg`}>
             <h3 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -95,12 +108,14 @@ const ContactSection = ({ darkMode, formData, handleInputChange, handleSubmit })
                 Let's Connect
               </h3>
               
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
+              <div className="space-y-4">                <div className="flex items-center space-x-3">
                   <Mail className="text-blue-600" size={20} />
-                  <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
-                    daniel.harapiak@email.com
-                  </span>
+                  <a 
+                    href="mailto:daniel@harapiak.com"
+                    className={`hover:text-blue-600 transition-colors ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}
+                  >
+                    daniel@harapiak.com
+                  </a>
                 </div>
                 
                 <div className="flex items-center space-x-3">
@@ -114,17 +129,22 @@ const ContactSection = ({ darkMode, formData, handleInputChange, handleSubmit })
               <div className="mt-8">
                 <h4 className={`text-lg font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                   Follow Me
-                </h4>
-                <div className="flex space-x-4">
+                </h4>                <div className="flex space-x-4">
                   <a 
-                    href="#" 
+                    href="https://www.linkedin.com/in/danielharapiak/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                    aria-label="LinkedIn Profile"
                   >
                     <Linkedin size={20} />
                   </a>
                   <a 
-                    href="#" 
+                    href="https://github.com/danharap"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-full bg-gray-800 text-white hover:bg-gray-900 transition-colors"
+                    aria-label="GitHub Profile"
                   >
                     <Github size={20} />
                   </a>

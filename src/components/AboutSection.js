@@ -1,17 +1,30 @@
 import React from 'react';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const AboutSection = ({ darkMode }) => {
+  const [titleRef, isTitleVisible] = useScrollAnimation();
+  const [contentRef, isContentVisible] = useScrollAnimation({ rootMargin: '0px 0px -100px 0px' });
+
   return (
     <section id="about" className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-16 transition-all duration-800 ${
+            isTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             About Me
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        </div>        
+        <div 
+          ref={contentRef}
+          className={`grid md:grid-cols-2 gap-12 items-center transition-all duration-1000 delay-300 ${
+            isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <div>
             <div className={`p-8 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
               <h3 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
