@@ -1,10 +1,79 @@
-import React from 'react';
-import { Mail, MapPin, Linkedin, Github } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, MapPin, Linkedin, Github, Send, CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import { validateForm, sendContactEmail } from '../services/contactService';
 
-const ContactSection = ({ darkMode, formData, handleInputChange, handleSubmit }) => {
+const ContactSection = ({ darkMode }) => {
   const [titleRef, isTitleVisible] = useScrollAnimation();
   const [contentRef, isContentVisible] = useScrollAnimation({ rootMargin: '0px 0px -100px 0px' });
+
+  // Form state management
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Clear specific error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Validate form
+    const validation = validateForm(formData);
+    if (!validation.isValid) {
+      setErrors(validation.errors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrors({});
+    setSubmitStatus(null);
+
+    try {
+      const result = await sendContactEmail(formData);
+      
+      if (result.success) {
+        setSubmitStatus('success');
+        setSubmitMessage(result.message);
+        setFormData({ name: '', email: '', message: '' }); // Reset form
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(result.message);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setSubmitMessage('Something went wrong. Please try again or email me directly.');
+    } finally {
+      setIsSubmitting(false);
+      
+      // Clear status message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+        setSubmitMessage('');
+      }, 5000);
+    }
+  };
 
   return (
     <section id="contact" className="py-20">
@@ -35,68 +104,115 @@ const ContactSection = ({ darkMode, formData, handleInputChange, handleSubmit })
             <h3 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
               Send a Message
             </h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Status Messages */}
+              {submitStatus && (
+                <div className={`p-4 rounded-md flex items-center space-x-2 ${
+                  submitStatus === 'success' 
+                    ? 'bg-green-100 text-green-800 border border-green-200' 
+                    : 'bg-red-100 text-red-800 border border-red-200'
+                }`}>
+                  {submitStatus === 'success' ? (
+                    <CheckCircle size={20} />
+                  ) : (
+                    <AlertCircle size={20} />
+                  )}
+                  <span>{submitMessage}</span>
+                </div>
+              )}
+
               <div>
                 <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  Name
+                  Name *
                 </label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  required
+                  disabled={isSubmitting}
                   className={`w-full px-4 py-3 rounded-md border transition-colors ${
-                    darkMode 
-                      ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-500' 
-                      : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20`}
+                    errors.name 
+                      ? 'border-red-500 focus:border-red-500' 
+                      : darkMode 
+                        ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-500' 
+                        : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
+                  } ${isSubmitting ? 'opacity-60 cursor-not-allowed' : ''} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20`}
+                  placeholder="Your full name"
                 />
+                {errors.name && (
+                  <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+                )}
               </div>
               
               <div>
                 <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  Email
+                  Email *
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  required
+                  disabled={isSubmitting}
                   className={`w-full px-4 py-3 rounded-md border transition-colors ${
-                    darkMode 
-                      ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-500' 
-                      : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20`}
+                    errors.email 
+                      ? 'border-red-500 focus:border-red-500' 
+                      : darkMode 
+                        ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-500' 
+                        : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
+                  } ${isSubmitting ? 'opacity-60 cursor-not-allowed' : ''} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20`}
+                  placeholder="your.email@example.com"
                 />
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                )}
               </div>
               
               <div>
                 <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  Message
+                  Message *
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  required
+                  disabled={isSubmitting}
                   rows={5}
                   className={`w-full px-4 py-3 rounded-md border transition-colors resize-none ${
-                    darkMode 
-                      ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-500' 
-                      : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20`}
+                    errors.message 
+                      ? 'border-red-500 focus:border-red-500' 
+                      : darkMode 
+                        ? 'bg-gray-700 border-gray-600 text-white focus:border-blue-500' 
+                        : 'bg-white border-gray-300 text-gray-900 focus:border-blue-500'
+                  } ${isSubmitting ? 'opacity-60 cursor-not-allowed' : ''} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20`}
+                  placeholder="Tell me about your project, question, or just say hello!"
                 />
+                {errors.message && (
+                  <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+                )}
               </div>
               
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+                disabled={isSubmitting}
+                className={`w-full px-6 py-3 rounded-md transition-all duration-200 flex items-center justify-center space-x-2 ${
+                  isSubmitting
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-blue-600 hover:bg-blue-700 transform hover:scale-105'
+                } text-white font-medium`}
               >
-                <Mail size={16} />
-                <span>Send Message</span>
+                {isSubmitting ? (
+                  <>
+                    <Loader className="animate-spin" size={16} />
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} />
+                    <span>Send Message</span>
+                  </>
+                )}
               </button>
             </form>
           </div>

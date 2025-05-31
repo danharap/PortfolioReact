@@ -13,32 +13,10 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
 
   // Toggle dark mode
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-  };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Placeholder for form submission - integrate with Web3Forms or Formspree
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
-  };
-
-  // Handle input changes
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
   };
 
   // Smooth scroll to section
@@ -96,14 +74,7 @@ function App() {
 
         <SkillsSection darkMode={darkMode} />
 
-        <ProjectsSection darkMode={darkMode} />
-
-        <ContactSection
-          darkMode={darkMode}
-          formData={formData}
-          handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit}
-        />
+        <ProjectsSection darkMode={darkMode} />        <ContactSection darkMode={darkMode} />
         
         <Footer darkMode={darkMode} />
       </main>
