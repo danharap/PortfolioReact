@@ -16,20 +16,18 @@ export const projectsData = [
     image: "/images/taskmanager/Thumbnail.png",
     featured: true,
     details: {
-      overview: "TaskManager is a comprehensive enterprise-level task management solution that demonstrates modern full-stack development practices. Built with Angular 18 frontend and ASP.NET Core backend, it features secure authentication, hierarchical task organization, calendar integration, and administrative controls suitable for professional environments.",
-      keyFeatures: [
-        "🔐 Secure JWT Authentication with SHA-256 password hashing and token refresh",
-        "👥 Role-based authorization system (User/Admin) with granular permissions",
-        "📅 Advanced calendar integration with angular-calendar for visual task scheduling",
-        "📋 Hierarchical task management with unlimited subtask nesting",
-        "🎨 Modern UI with Light/Dark theme support using Angular Material",
-        "🔔 Real-time notification system with toast messages and status updates",
-        "⚡ High-performance RESTful API with Entity Framework Core and SQL Server",
-        "📱 Fully responsive design optimized for desktop, tablet, and mobile devices",
-        "🛡️ Comprehensive input validation and error handling on both client and server",
-        "🚀 Optimized performance with lazy loading and efficient data pagination"
-      ],
-      technicalHighlights: [
+      overview: "TaskManager is a comprehensive enterprise-level task management solution that demonstrates modern full-stack development practices. Built with Angular 18 frontend and ASP.NET Core backend, it features secure authentication, hierarchical task organization, calendar integration, and administrative controls suitable for professional environments.",      keyFeatures: [
+        "Secure JWT authentication with SHA-256 password hashing and automatic token refresh",
+        "Role-based authorization system with User and Admin permission levels",
+        "Advanced calendar integration with angular-calendar for visual task scheduling",
+        "Hierarchical task management with unlimited subtask nesting capabilities",
+        "Modern UI with Light/Dark theme support using Angular Material Design",
+        "Real-time notification system with toast messages and status updates",
+        "High-performance RESTful API built with Entity Framework Core and SQL Server",
+        "Fully responsive design optimized for desktop, tablet, and mobile devices",
+        "Comprehensive input validation and error handling on both client and server sides",
+        "Performance optimization through lazy loading and efficient data pagination"
+      ],technicalHighlights: [
         "Modern Angular 18 architecture with standalone components and TypeScript",
         "HTTP interceptors for automatic JWT token management and request/response handling",
         "Reactive programming patterns using RxJS observables and operators",
@@ -40,14 +38,16 @@ export const projectsData = [
         "State management using Angular services and reactive patterns",
         "Custom validators and form controls for enhanced user experience",
         "Modular component structure with reusable UI elements and shared services"
-      ],      screenshots: [{
+      ],screenshots: [
+        {
+          title: "Secure Login System",
+          image: "/images/taskmanager/Login.png",
+          description: "Professional login interface with JWT authentication, input validation, and secure password handling"
+        },
+        {
           title: "Main Dashboard Overview",
           image: "/images/taskmanager/Dashboard.png",
           description: "Comprehensive task dashboard with priority indicators, completion tracking, and quick action buttons"
-        },        {
-          title: "Advanced Task Management",
-          image: "/images/taskmanager/TaskManagement.png",
-          description: "Hierarchical task organization with unlimited subtask nesting, priority levels, and status tracking"
         },
         {
           title: "Subtask Management",
@@ -55,23 +55,24 @@ export const projectsData = [
           description: "Detailed subtask breakdown with hierarchical organization and progress tracking"
         },
         {
+          title: "Account Settings",
+          image: "/images/taskmanager/Settings.png",
+          description: "Secure account management with username updates and password change functionality"
+        },
+        {
           title: "Integrated Calendar View",
           image: "/images/taskmanager/Calendar.png",
           description: "Visual task scheduling with monthly, weekly, and daily calendar views using angular-calendar"
         },
         {
-          title: "User Management Panel",
-          image: "/images/taskmanager/UserManagement.png",
-          description: "Advanced user administration with role management and account controls"
-        },
-        {
-          title: "Account Settings",
-          image: "/images/taskmanager/Settings.png",
-          description: "Secure account management with username updates and password change functionality"
-        },        {
           title: "Analytics Dashboard",
           image: "/images/taskmanager/Analytics.png",
           description: "Comprehensive analytics and reporting dashboard with task completion metrics"
+        },
+        {
+          title: "Real-time Notifications",
+          image: "/images/taskmanager/Notification.png",
+          description: "Comprehensive notification system with real-time updates and user feedback"
         },
         {
           title: "Help & Documentation",
@@ -82,10 +83,16 @@ export const projectsData = [
           title: "Technical Documentation",
           image: "/images/taskmanager/DevDocs.png",
           description: "Developer documentation and technical specifications for the application"
-        },        {
-          title: "Real-time Notifications",
-          image: "/images/taskmanager/Notification.png",
-          description: "Comprehensive notification system with real-time updates and user feedback"
+        },
+        {
+          title: "Advanced Task Management",
+          image: "/images/taskmanager/TaskManagement.png",
+          description: "Hierarchical task organization with unlimited subtask nesting, priority levels, and status tracking"
+        },
+        {
+          title: "User Management Panel",
+          image: "/images/taskmanager/UserManagement.png",
+          description: "Advanced user administration with role management and account controls"
         }
       ],
       architecture: {
@@ -110,15 +117,13 @@ export const projectsData = [
           "Input validation and sanitization",
           "HTTPS enforcement and secure headers"
         ]
-      },
-      challenges: [
+      },      challenges: [
         "Implementing secure JWT authentication with automatic token refresh",
         "Designing a scalable hierarchical task structure with unlimited nesting",
         "Creating a responsive UI that works seamlessly across all device sizes",
         "Integrating complex calendar functionality with task management workflows",
-        "Implementing real-time notifications without WebSocket complexity"
-      ],
-      outcomes: [
+        "Building real-time notifications without WebSocket complexity"
+      ],      outcomes: [
         "Achieved 100% type safety with TypeScript throughout the application",
         "Implemented enterprise-grade security with JWT and role-based access",
         "Created a scalable architecture suitable for production deployment",
