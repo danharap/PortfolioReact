@@ -13,7 +13,7 @@ export const projectsData = [
     description: "A professional-grade full-stack task management application built with Angular 18 and ASP.NET Core, showcasing enterprise development practices with robust authentication, role-based access control, and comprehensive task organization features.",
     technologies: ["Angular 18", "TypeScript", "ASP.NET Core", "Entity Framework", "SQL Server", "JWT", "Angular Material", "RxJS"],
     liveDemo: "#", // Add your live demo URL when deployed    github: "https://github.com/danharap/TaskManager", // Update with actual repo URL when available
-    image: "/PortfolioReact/images/taskmanager/Thumbnail.png",
+    image: "/images/taskmanager/Thumbnail.png",
     featured: true,
     details: {
       overview: "TaskManager is a comprehensive enterprise-level task management solution that demonstrates modern full-stack development practices. Built with Angular 18 frontend and ASP.NET Core backend, it features secure authentication, hierarchical task organization, calendar integration, and administrative controls suitable for professional environments.",      keyFeatures: [
@@ -41,57 +41,57 @@ export const projectsData = [
       ],      screenshots: [
         {
           title: "Secure Login System",
-          image: "/PortfolioReact/images/taskmanager/Login.png",
+          image: "/images/taskmanager/Login.png",
           description: "Professional login interface with JWT authentication, input validation, and secure password handling"
         },
         {
           title: "Main Dashboard Overview",
-          image: "/PortfolioReact/images/taskmanager/Dashboard.png",
+          image: "/images/taskmanager/Dashboard.png",
           description: "Comprehensive task dashboard with priority indicators, completion tracking, and quick action buttons"
         },
         {
           title: "Subtask Management",
-          image: "/PortfolioReact/images/taskmanager/Subtasks.png",
+          image: "/images/taskmanager/Subtasks.png",
           description: "Detailed subtask breakdown with hierarchical organization and progress tracking"
         },
         {
           title: "Account Settings",
-          image: "/PortfolioReact/images/taskmanager/Settings.png",
+          image: "/images/taskmanager/Settings.png",
           description: "Secure account management with username updates and password change functionality"
         },
         {
           title: "Integrated Calendar View",
-          image: "/PortfolioReact/images/taskmanager/Calendar.png",
+          image: "/images/taskmanager/Calendar.png",
           description: "Visual task scheduling with monthly, weekly, and daily calendar views using angular-calendar"
         },
         {
           title: "Analytics Dashboard",
-          image: "/PortfolioReact/images/taskmanager/Analytics.png",
+          image: "/images/taskmanager/Analytics.png",
           description: "Comprehensive analytics and reporting dashboard with task completion metrics"
         },
         {
           title: "Real-time Notifications",
-          image: "/PortfolioReact/images/taskmanager/Notification.png",
+          image: "/images/taskmanager/Notification.png",
           description: "Comprehensive notification system with real-time updates and user feedback"
         },
         {
           title: "Help & Documentation",
-          image: "/PortfolioReact/images/taskmanager/HelpPage.png",
+          image: "/images/taskmanager/HelpPage.png",
           description: "Built-in help system with comprehensive documentation and user guides"
         },
         {
           title: "Technical Documentation",
-          image: "/PortfolioReact/images/taskmanager/DevDocs.png",
+          image: "/images/taskmanager/DevDocs.png",
           description: "Developer documentation and technical specifications for the application"
         },
         {
           title: "Advanced Task Management",
-          image: "/PortfolioReact/images/taskmanager/TaskManagement.png",
+          image: "/images/taskmanager/TaskManagement.png",
           description: "Hierarchical task organization with unlimited subtask nesting, priority levels, and status tracking"
         },
         {
           title: "User Management Panel",
-          image: "/PortfolioReact/images/taskmanager/UserManagement.png",
+          image: "/images/taskmanager/UserManagement.png",
           description: "Advanced user administration with role management and account controls"
         }
       ],
