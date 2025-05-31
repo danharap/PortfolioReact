@@ -16,7 +16,9 @@ A modern, responsive portfolio website built with React and Tailwind CSS, showca
 
 ## 🚀 Live Demo
 
-[View Live Portfolio](https://your-portfolio-url.com) *(Coming Soon)*
+**[View Live Portfolio](https://danharap.github.io/PortfolioReact)** 
+
+Experience the full portfolio with interactive features, smooth animations, and responsive design across all devices.
 
 ## 📱 Screenshots
 
@@ -126,20 +128,31 @@ Update your projects portfolio in:
 
 ## 🌐 Deployment
 
-### Vercel (Recommended)
+This portfolio is currently deployed on **GitHub Pages** and automatically updates when changes are pushed to the main branch.
+
+### GitHub Pages Deployment
+The portfolio is configured for automatic deployment to GitHub Pages:
+
+1. **Automatic Deployment**: Changes pushed to `main` branch trigger automatic builds
+2. **Live URL**: https://danharap.github.io/PortfolioReact
+3. **Manual Deployment**: Run `npm run deploy` to manually deploy changes
+
+### Alternative Deployment Options
+
+#### Vercel (Recommended for React apps)
 1. Push your code to GitHub
 2. Connect your repository to Vercel
 3. Deploy with automatic builds on push
 
-### Netlify
+#### Netlify
 1. Build the project: `npm run build`
 2. Drag and drop the `build` folder to Netlify
 3. Or connect your GitHub repository for automatic deployments
 
-### GitHub Pages
-1. Install gh-pages: `npm install --save-dev gh-pages`
-2. Add deploy scripts to package.json
-3. Run: `npm run deploy`
+### Deployment Commands
+- `npm run build` - Creates production build
+- `npm run deploy` - Deploys to GitHub Pages
+- `npm run predeploy` - Runs automatically before deploy
 
 ## 📧 Contact Form Setup
 
