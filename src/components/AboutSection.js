@@ -29,9 +29,8 @@ const AboutSection = ({ darkMode }) => {
             <div className={`p-8 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
               <h3 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                 My Journey
-              </h3>
-              <p className={`text-lg leading-relaxed mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                As a Computer Science major with a passion for software engineering, I'm dedicated to 
+              </h3>              <p className={`text-lg leading-relaxed mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                As a Computer Science student with a specialization in software development, I'm dedicated to 
                 creating innovative solutions that make a difference. My journey in technology began 
                 with curiosity and has evolved into a deep commitment to excellence in software development.
               </p>
@@ -43,14 +42,15 @@ const AboutSection = ({ darkMode }) => {
             </div>
           </div>
           
-          <div className="space-y-6">
-            <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
+          <div className="space-y-6">            <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
               <h4 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                 Education
               </h4>
               <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                Computer Science Major<br />
-                Focus on Software Engineering & Data Structures
+                <strong>Western University</strong><br />
+                Bachelor of Science in Computer Science<br />
+                Specialization: Computer Science<br />
+                London, Ontario, Canada
               </p>
             </div>
             

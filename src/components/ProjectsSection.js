@@ -25,10 +25,9 @@ const ProjectsSection = ({ darkMode }) => {
           ref={projectsRef}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {projectsData.map((project, index) => (
-            <div 
+          {projectsData.map((project, index) => (            <div 
               key={project.id} 
-              className={`rounded-lg overflow-hidden shadow-lg transition-all duration-800 hover:scale-105 ${
+              className={`rounded-lg overflow-hidden shadow-lg transition-all duration-800 hover-lift magnetic-hover group ${
                 darkMode ? 'bg-gray-900' : 'bg-white'
               } ${
                 isProjectsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -37,8 +36,9 @@ const ProjectsSection = ({ darkMode }) => {
                 transitionDelay: isProjectsVisible ? `${index * 200}ms` : '0ms' 
               }}
             >
-              <div className={`p-8 text-center ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
-                <div className="text-6xl mb-4">{project.image}</div>
+              <div className={`p-8 text-center relative overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="text-6xl mb-4 animate-float relative z-10">{project.image}</div>
               </div>
               
               <div className="p-6">

@@ -27,7 +27,8 @@ const SkillsSection = ({ darkMode }) => {
             Technical Skills
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-        </div>        
+        </div>
+        
         <div 
           ref={skillsRef}
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -35,7 +36,7 @@ const SkillsSection = ({ darkMode }) => {
           {skillCategories.map(({ key, title, icon: Icon, color }, index) => (
             <div 
               key={key} 
-              className={`p-8 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-50'} shadow-lg transition-all duration-800 ${
+              className={`p-8 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-50'} shadow-lg hover-lift transition-all duration-800 ${
                 isSkillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ 
@@ -47,9 +48,11 @@ const SkillsSection = ({ darkMode }) => {
                 <h3 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                   {title}
                 </h3>
-              </div>              <div className="space-y-3">
-                {skillsData[key].map((skill, index) => (
-                  <div key={index} className="flex items-center space-x-3 group">
+              </div>
+              
+              <div className="space-y-3">
+                {skillsData[key].map((skill, skillIndex) => (
+                  <div key={skillIndex} className="flex items-center space-x-3 group">
                     <div className="w-8 h-8 flex items-center justify-center">
                       <img 
                         src={skill.icon} 
@@ -57,7 +60,7 @@ const SkillsSection = ({ darkMode }) => {
                         className="w-6 h-6 object-contain transition-transform group-hover:scale-110"
                       />
                     </div>
-                    <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} group-hover:${skill.color} transition-colors`}>
+                    <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} group-hover:text-blue-500 transition-colors`}>
                       {skill.name}
                     </span>
                   </div>

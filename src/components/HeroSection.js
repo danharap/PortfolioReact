@@ -1,9 +1,11 @@
 import React from 'react';
 import { Mail, MapPin, Download, ChevronDown, Github, Linkedin } from 'lucide-react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import { useTypewriter } from '../hooks/useAnimations';
 
 const HeroSection = ({ darkMode, scrollToSection }) => {
   const [heroRef, isHeroVisible] = useScrollAnimation();
+  const typewriterText = useTypewriter('Computer Science Student & Developer', 80, 1000);
 
   return (
     <section id="home" className="pt-20 min-h-screen flex items-center">
@@ -12,34 +14,35 @@ const HeroSection = ({ darkMode, scrollToSection }) => {
         className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 transition-all duration-1000 ${
           isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
-      >        <div className="text-center">
-          <div className={`mb-8 transition-all duration-1200 delay-200 ${
+      >        <div className="text-center">          <div className={`mb-8 transition-all duration-1200 delay-200 animate-float ${
             isHeroVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
           }`}>
-            <div className={`inline-block p-4 rounded-full mb-6 ${
+            <div className={`inline-block p-4 rounded-full mb-6 animate-pulse-glow ${
               darkMode ? 'bg-gray-800' : 'bg-gray-100'
             }`}>
-              <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold morphing-blob">
                 DH
               </div>
             </div>
           </div>
           
-          <h1 className={`text-5xl md:text-7xl font-bold mb-6 transition-all duration-1000 delay-400 ${
-            darkMode ? 'text-white' : 'text-gray-900'
-          } ${
+          <h1 className={`text-5xl md:text-7xl font-bold mb-6 gradient-text transition-all duration-1000 delay-400 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             Daniel Harapiak
           </h1>
           
-          <p className={`text-xl md:text-2xl mb-4 transition-all duration-1000 delay-600 ${
+          <div className={`text-xl md:text-2xl mb-4 transition-all duration-1000 delay-600 min-h-[2rem] ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           } ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            Software Engineer & Computer Science Major
-          </p>
+            {isHeroVisible && (
+              <span className="animate-typewriter">
+                {typewriterText}
+              </span>
+            )}
+          </div>
           
           <div className={`flex items-center justify-center space-x-4 mb-8 transition-all duration-1000 delay-700 ${
             darkMode ? 'text-gray-400' : 'text-gray-500'
@@ -59,19 +62,18 @@ const HeroSection = ({ darkMode, scrollToSection }) => {
           }`}>
             Passionate about creating innovative solutions through clean code and modern technologies. 
             I love turning complex problems into simple, beautiful designs.
-          </p>
-            <div className={`flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 transition-all duration-1000 delay-1000 ${
+          </p>          <div className={`flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 transition-all duration-1000 delay-1000 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="px-8 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center space-x-2"
+              className="px-8 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center space-x-2 magnetic-hover hover-lift"
             >
               <Mail size={16} />
               <span>Get In Touch</span>
             </button>
             
-            <button className={`px-8 py-3 border rounded-md transition-colors flex items-center space-x-2 ${
+            <button className={`px-8 py-3 border rounded-md transition-colors flex items-center space-x-2 magnetic-hover hover-lift ${
               darkMode 
                 ? 'border-gray-600 text-gray-300 hover:bg-gray-800' 
                 : 'border-gray-300 text-gray-700 hover:bg-gray-50'

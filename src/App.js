@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
+import StatsSection from './components/StatsSection';
 import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import ParticleBackground from './components/ParticleBackground';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -69,11 +71,12 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  return (
-    <div className={`min-h-screen transition-colors duration-300 ${
+  return (    <div className={`min-h-screen transition-colors duration-300 ${
       darkMode ? 'dark bg-gray-900' : 'bg-white'
     }`}>
+      {/* Background Effects */}
+      <ParticleBackground darkMode={darkMode} />
+      
       <Navigation
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
@@ -83,23 +86,27 @@ function App() {
         scrollToSection={scrollToSection}
       />
 
-      <HeroSection 
-        darkMode={darkMode} 
-        scrollToSection={scrollToSection} 
-      />
+      <main className="relative z-10">
+        <HeroSection 
+          darkMode={darkMode} 
+          scrollToSection={scrollToSection} 
+        />        <AboutSection darkMode={darkMode} />
 
-      <AboutSection darkMode={darkMode} />
+        <StatsSection darkMode={darkMode} />
 
-      <SkillsSection darkMode={darkMode} />
+        <SkillsSection darkMode={darkMode} />
 
-      <ProjectsSection darkMode={darkMode} />      <ContactSection
-        darkMode={darkMode}
-        formData={formData}
-        handleInputChange={handleInputChange}
-        handleSubmit={handleSubmit}
-      />
-      
-      <Footer darkMode={darkMode} />
+        <ProjectsSection darkMode={darkMode} />
+
+        <ContactSection
+          darkMode={darkMode}
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
+        />
+        
+        <Footer darkMode={darkMode} />
+      </main>
     </div>
   );
 }
