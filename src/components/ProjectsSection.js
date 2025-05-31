@@ -76,7 +76,7 @@ const ProjectsSection = ({ darkMode }) => {
               )}              {/* Project Image */}
               <div className={`relative overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                {project.image?.startsWith('/images/') ? (
+                {project.image?.includes('/images/taskmanager/') ? (
                   <div className="relative h-56 overflow-hidden">
                     <img 
                       src={project.image} 
