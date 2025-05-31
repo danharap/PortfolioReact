@@ -53,24 +53,13 @@ const AboutSection = ({ darkMode }) => {
                 London, Ontario, Canada
               </p>
             </div>
-            
-            <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
+              <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
               <h4 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                 Interests
               </h4>
               <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Full-Stack Development, Cloud Computing, 
                 Machine Learning, Open Source Contribution
-              </p>
-            </div>
-            
-            <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
-              <h4 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                Location
-              </h4>
-              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                Burlington, Ontario, Canada<br />
-                Open to remote opportunities
               </p>
             </div>
           </div>
