@@ -7,15 +7,130 @@ export const projectsData = [
     liveDemo: "#",
     github: "#",
     image: "🛒"
-  },
-  {
+  },  {
     id: 2,
-    title: "Task Management System",
-    description: "A collaborative project management tool built with Angular and ASP.NET Core, featuring real-time updates and team collaboration features.",
-    technologies: ["Angular", "ASP.NET", "SQL Server", "Azure"],
-    liveDemo: "#",
-    github: "#",
-    image: "📋"
+    title: "TaskManager - Enterprise Task Management System",
+    description: "A professional-grade full-stack task management application built with Angular 18 and ASP.NET Core, showcasing enterprise development practices with robust authentication, role-based access control, and comprehensive task organization features.",
+    technologies: ["Angular 18", "TypeScript", "ASP.NET Core", "Entity Framework", "SQL Server", "JWT", "Angular Material", "RxJS"],
+    liveDemo: "#", // Add your live demo URL when deployed    github: "https://github.com/danharap/TaskManager", // Update with actual repo URL when available
+    image: "/images/taskmanager/Thumbnail.png",
+    featured: true,
+    details: {
+      overview: "TaskManager is a comprehensive enterprise-level task management solution that demonstrates modern full-stack development practices. Built with Angular 18 frontend and ASP.NET Core backend, it features secure authentication, hierarchical task organization, calendar integration, and administrative controls suitable for professional environments.",
+      keyFeatures: [
+        "🔐 Secure JWT Authentication with SHA-256 password hashing and token refresh",
+        "👥 Role-based authorization system (User/Admin) with granular permissions",
+        "📅 Advanced calendar integration with angular-calendar for visual task scheduling",
+        "📋 Hierarchical task management with unlimited subtask nesting",
+        "🎨 Modern UI with Light/Dark theme support using Angular Material",
+        "🔔 Real-time notification system with toast messages and status updates",
+        "⚡ High-performance RESTful API with Entity Framework Core and SQL Server",
+        "📱 Fully responsive design optimized for desktop, tablet, and mobile devices",
+        "🛡️ Comprehensive input validation and error handling on both client and server",
+        "🚀 Optimized performance with lazy loading and efficient data pagination"
+      ],
+      technicalHighlights: [
+        "Modern Angular 18 architecture with standalone components and TypeScript",
+        "HTTP interceptors for automatic JWT token management and request/response handling",
+        "Reactive programming patterns using RxJS observables and operators",
+        "Entity Framework Core with Code-First migrations and LocalDB integration",
+        "Comprehensive CORS configuration for secure cross-origin resource sharing",
+        "Service-oriented architecture with dependency injection throughout the application",
+        "Angular Material Design System for consistent and professional UI components",
+        "State management using Angular services and reactive patterns",
+        "Custom validators and form controls for enhanced user experience",
+        "Modular component structure with reusable UI elements and shared services"
+      ],
+      screenshots: [
+        {
+          title: "Secure Authentication System",
+          image: "/images/taskmanager/login.png",
+          description: "Professional login interface with JWT authentication, input validation, and secure password handling"
+        },
+        {
+          title: "Main Dashboard Overview",
+          image: "/images/taskmanager/Dashboard.png",
+          description: "Comprehensive task dashboard with priority indicators, completion tracking, and quick action buttons"
+        },
+        {
+          title: "Advanced Task Management",
+          image: "/images/taskmanager/Subtasks.png",
+          description: "Hierarchical task organization with unlimited subtask nesting, priority levels, and status tracking"
+        },
+        {
+          title: "Integrated Calendar View",
+          image: "/images/taskmanager/Calendar.png",
+          description: "Visual task scheduling with monthly, weekly, and daily calendar views using angular-calendar"
+        },
+        {
+          title: "Administrative Controls",
+          image: "/images/taskmanager/AdminSidebar.png",
+          description: "Comprehensive admin panel for user management, role assignment, and system configuration"
+        },
+        {
+          title: "User Management Panel",
+          image: "/images/taskmanager/UserManagement.png",
+          description: "Advanced user administration with role management and account controls"
+        },
+        {
+          title: "Account Settings",
+          image: "/images/taskmanager/Settings.png",
+          description: "Secure account management with username updates and password change functionality"
+        },
+        {
+          title: "Dark Theme Support",
+          image: "/images/taskmanager/Darkmode.png",
+          description: "Professional dark theme implementation with persistent user preferences"
+        },
+        {
+          title: "Real-time Notifications",
+          image: "/images/taskmanager/Notification.png",
+          description: "Comprehensive notification system with real-time updates and user feedback"
+        },
+        {
+          title: "Notification Management",
+          image: "/images/taskmanager/NotificationList.png",
+          description: "Centralized notification center with message history and status tracking"
+        }
+      ],
+      architecture: {
+        frontend: [
+          "Angular 18 with TypeScript for type-safe development",
+          "Angular Material for consistent UI components",
+          "RxJS for reactive programming and state management",
+          "Angular Router for navigation and route guards",
+          "HTTP Client with interceptors for API communication"
+        ],
+        backend: [
+          "ASP.NET Core Web API with RESTful endpoints",
+          "Entity Framework Core for database operations",
+          "JWT Bearer token authentication and authorization",
+          "SQL Server with LocalDB for development",
+          "CORS middleware for secure cross-origin requests"
+        ],
+        security: [
+          "SHA-256 password hashing with salt",
+          "JWT token-based authentication with refresh tokens",
+          "Role-based authorization with claims",
+          "Input validation and sanitization",
+          "HTTPS enforcement and secure headers"
+        ]
+      },
+      challenges: [
+        "Implementing secure JWT authentication with automatic token refresh",
+        "Designing a scalable hierarchical task structure with unlimited nesting",
+        "Creating a responsive UI that works seamlessly across all device sizes",
+        "Integrating complex calendar functionality with task management workflows",
+        "Implementing real-time notifications without WebSocket complexity"
+      ],
+      outcomes: [
+        "Achieved 100% type safety with TypeScript throughout the application",
+        "Implemented enterprise-grade security with JWT and role-based access",
+        "Created a scalable architecture suitable for production deployment",
+        "Delivered a professional user experience with Angular Material Design",
+        "Demonstrated full-stack development expertise with modern technologies"
+      ]
+    }
   },
   {
     id: 3,
