@@ -10,9 +10,9 @@ export const projectsData = [
   },  {
     id: 2,
     title: "TaskManager - Enterprise Task Management System",
-    description: "A professional-grade full-stack task management application built with Angular 18 and ASP.NET Core, showcasing enterprise development practices with robust authentication, role-based access control, and comprehensive task organization features.",
-    technologies: ["Angular 18", "TypeScript", "ASP.NET Core", "Entity Framework", "SQL Server", "JWT", "Angular Material", "RxJS"],
-    liveDemo: "#", // Add your live demo URL when deployed    github: "https://github.com/danharap/TaskManager", // Update with actual repo URL when available
+    description: "A professional-grade full-stack task management application built with Angular 18 and ASP.NET Core, showcasing enterprise development practices with robust authentication, role-based access control, and comprehensive task organization features.",    technologies: ["Angular 18", "TypeScript", "ASP.NET Core", "Entity Framework", "SQL Server", "JWT", "Angular Material", "RxJS"],
+    liveDemo: "https://task-manager-daniel-harapiaks-projects.vercel.app/", 
+    github: "https://github.com/danharap/TaskManager", // Update with actual repo URL when available
     image: `${process.env.PUBLIC_URL}/images/taskmanager/Thumbnail.png`,
     featured: true,
     details: {

@@ -126,9 +126,10 @@ const ProjectsSection = ({ darkMode }) => {
                   )}
                 </div>
                   <div className="flex justify-between items-center">
-                  <div className="flex space-x-4">
-                    <a 
+                  <div className="flex space-x-4">                    <a 
                       href={project.liveDemo}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className="flex items-center space-x-1 text-blue-600 hover:text-blue-700 transition-colors"
                     >
@@ -393,10 +394,11 @@ const ProjectsSection = ({ darkMode }) => {
                 </div>
               )}
 
-              {/* Project Links */}
-              <div className="flex justify-center space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+              {/* Project Links */}              <div className="flex justify-center space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
                 <a
                   href={selectedProject.liveDemo}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   <ExternalLink size={20} />
