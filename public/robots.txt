@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danharap.github.io/PortfolioReact/sitemap.xml
