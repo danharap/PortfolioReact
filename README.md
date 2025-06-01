@@ -16,7 +16,7 @@ A modern, responsive portfolio website built with React and Tailwind CSS, showca
 
 ## 🚀 Live Demo
 
-**[View Live Portfolio](https://danharap.github.io/PortfolioReact)** 
+**[View Live Portfolio](https://daniel-harapiak-portfolio.vercel.app/)** 
 
 Experience the full portfolio with interactive features, smooth animations, and responsive design across all devices.
 
