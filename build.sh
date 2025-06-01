@@ -1,5 +1,5 @@
 #!/bin/bash
-# This is a custom build script for Vercel
+# Local build script for testing
 
 # Show debugging info
 echo "Current directory: $(pwd)"
