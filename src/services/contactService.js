@@ -32,11 +32,12 @@ export const validateForm = (formData) => {
 // Send contact email using Web3Forms
 export const sendContactEmail = async (formData) => {
   console.log('🚀 Sending email with data:', formData);
-  console.log('🔑 Using access key:', process.env.REACT_APP_WEB3FORMS_KEY);
   
   try {
+    const accessKey = process.env.REACT_APP_WEB3FORMS_KEY || '1b212630-6789-4b9f-81ea-f6fc97cdacc3';
+    
     const payload = {
-      access_key: process.env.REACT_APP_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY_HERE',
+      access_key: accessKey,
       name: formData.name.trim(),
       email: formData.email.trim(),
       message: formData.message.trim(),
