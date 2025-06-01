@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import useImagePath from '../hooks/useImagePath';
 
 const ProjectsSection = ({ darkMode }) => {
   const [titleRef, isTitleVisible] = useScrollAnimation();
   const [projectsRef, isProjectsVisible] = useScrollAnimation({ rootMargin: '0px 0px -100px 0px' });
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { getImagePath } = useImagePath();
 
   const openProjectModal = (project) => {
     setSelectedProject(project);
@@ -75,10 +77,9 @@ const ProjectsSection = ({ darkMode }) => {
                 </div>
               )}              {/* Project Image */}
               <div className={`relative overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                {project.image?.includes('/images/taskmanager/') ? (
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>                {project.image?.includes('/images/taskmanager/') ? (
                   <div className="relative h-56 overflow-hidden">                    <img 
-                      src={project.image} 
+                      src={getImagePath(project.image)} 
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       onError={(e) => {
@@ -203,10 +204,9 @@ const ProjectsSection = ({ darkMode }) => {
 
             <div className="p-6">              {/* Image Carousel */}
               {selectedProject.details?.screenshots && selectedProject.details.screenshots.length > 0 && (
-                <div className="mb-8">
-                  <div className="relative bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
+                <div className="mb-8">                  <div className="relative bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
                     <img
-                      src={selectedProject.details.screenshots[currentImageIndex]?.image}
+                      src={getImagePath(selectedProject.details.screenshots[currentImageIndex]?.image)}
                       alt={selectedProject.details.screenshots[currentImageIndex]?.title}
                       className="w-full max-h-96 object-contain rounded-lg shadow-lg"
                       style={{ minHeight: '300px' }}
@@ -258,9 +258,8 @@ const ProjectsSection = ({ darkMode }) => {
                               ? 'border-blue-500 opacity-100'
                               : 'border-transparent opacity-50 hover:opacity-75'
                           }`}
-                        >
-                          <img
-                            src={screenshot.image}
+                        >                          <img
+                            src={getImagePath(screenshot.image)}
                             alt={screenshot.title}
                             className="w-full h-full object-cover"
                           />
