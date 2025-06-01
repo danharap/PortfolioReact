@@ -1,8 +1,1 @@
-{
-  "buildCommand": "npm run build:vercel",
-  "outputDirectory": "build",
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
-}
+{}

@@ -1,0 +1,5 @@
+build.sh
+vercel-build.sh
+.env.local
+.env.production.local
+*.log
