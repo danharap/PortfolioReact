@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Star, ChevronDown } from 'lucide-react';
+import { ExternalLink, Github, X, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import useImagePath from '../hooks/useImagePath';
@@ -55,7 +55,7 @@ const ProjectsSection = ({ darkMode }) => {
           }`}
         >
           <h2 className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            Featured Projects
+            Projects
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
         </div>        
@@ -75,15 +75,7 @@ const ProjectsSection = ({ darkMode }) => {
               }}
               onClick={() => project.details && openProjectModal(project)}
             >
-              {/* Featured Badge */}
-              {project.featured && (
-                <div className="absolute top-4 right-4 z-10">
-                  <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center space-x-1">
-                    <Star size={12} fill="currentColor" />
-                    <span>Featured</span>
-                  </div>
-                </div>
-              )}              {/* Project Image */}
+              {/* Project Image */}
               <div className={`relative overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>                {project.image?.startsWith('/images/') ? (
                   <div className="relative h-56 overflow-hidden">
@@ -161,7 +153,7 @@ const ProjectsSection = ({ darkMode }) => {
                     </a>
                   </div>
                   
-                  {/* View Details Button for Featured Projects */}
+                  {/* View Details */}
                   {project.details && (
                     <button
                       onClick={(e) => {
@@ -223,12 +215,6 @@ const ProjectsSection = ({ darkMode }) => {
                 <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                   {selectedProject.title}
                 </h3>
-                {selectedProject.featured && (
-                  <div className="flex items-center space-x-1 mt-1">
-                    <Star size={16} className="text-yellow-500" fill="currentColor" />
-                    <span className="text-yellow-500 text-sm font-medium">Featured Project</span>
-                  </div>
-                )}
               </div>
               <button
                 onClick={closeProjectModal}

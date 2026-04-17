@@ -5,7 +5,6 @@ export const projectsData = [
     description: "A professional-grade full-stack task management application built with Angular 18 and ASP.NET Core, showcasing enterprise development practices with robust authentication, role-based access control, and comprehensive task organization features.",    technologies: ["Angular 18", "TypeScript", "ASP.NET Core", "Entity Framework", "SQL Server", "JWT", "Angular Material", "RxJS"],    liveDemo: "https://task-manager-daniel-harapiaks-projects.vercel.app/", 
     github: "https://github.com/danharap/TaskManager", // Update with actual repo URL when available
     image: "/images/taskmanager/Thumbnail.png",
-    featured: true,
     details: {
       overview: "TaskManager is a comprehensive enterprise-level task management solution that demonstrates modern full-stack development practices. Built with Angular 18 frontend and ASP.NET Core backend, it features secure authentication, hierarchical task organization, calendar integration, and administrative controls suitable for professional environments.",      keyFeatures: [
         "Secure JWT authentication with SHA-256 password hashing and automatic token refresh",
@@ -131,7 +130,6 @@ export const projectsData = [
     liveDemo: "https://promo-pilot-five.vercel.app",
     github: "https://github.com/danharap/PromoPilot",
     image: "/images/promopilot/Thumbnail.png",
-    featured: true,
     details: {
       overview: "PromoPilot is a full-stack social media management platform built for small businesses and creators who want to schedule, publish, and track content across social platforms from a single dashboard. I built it from the ground up — starting from a React prototype with mock data and migrating it to a fully connected production web app with real authentication, a live database, Mastodon OAuth integration, and a cron-triggered serverless publish worker.",
       keyFeatures: [
@@ -215,7 +213,6 @@ export const projectsData = [
     liveDemo: "https://budget-app-inky-one.vercel.app/auth/sign-in",
     github: "https://github.com/danharap/BudgetApp",
     image: "/images/budgetapp/Thumbnail.png",
-    featured: true,
     details: {
       overview: "BudgetApp is a mobile-first personal finance application built from scratch with Expo and React Native. It allows users to track their spending, set monthly budgets per category, monitor upcoming bills, and manage multiple bank and investment accounts — all backed by a live Supabase database with per-user data isolation. The app is deployed as a Progressive Web App (PWA) via Vercel, meaning it installs directly to your iPhone home screen and feels indistinguishable from a native app.",
       keyFeatures: [
@@ -280,7 +277,6 @@ export const projectsData = [
     liveDemo: null,
     github: "https://github.com/danharap/PhotoCleaner",
     image: "/images/photocleaner/Thumbnail.png",
-    featured: true,
     details: {
       overview: "PhotoCleaner is a cross-platform macOS and iOS SwiftUI app that solves a real friction point: cleaning up a bloated photo library is tedious in the native Photos app. PhotoCleaner replaces that with a fast swipe-review card workflow backed by PhotoKit — the same framework Apple Photos uses — so every action operates on your real library. I built it initially for one platform, then refactored it into a shared architecture (PhotoCleanerShared) so core models, service logic, the view model, and reusable views all run on both targets without duplication, while platform-specific UI wrappers handle the AppKit/UIKit differences cleanly.",
       keyFeatures: [

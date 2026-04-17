@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
