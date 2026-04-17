@@ -1,14 +1,6 @@
 export const projectsData = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with React frontend and FastAPI backend, featuring user authentication, payment processing, and inventory management.",
-    technologies: ["React", "FastAPI", "PostgreSQL", "Docker"],
-    liveDemo: "#",
-    github: "#",
-    image: "🛒"
-  },  {
-    id: 2,
     title: "TaskManager - Enterprise Task Management System",
     description: "A professional-grade full-stack task management application built with Angular 18 and ASP.NET Core, showcasing enterprise development practices with robust authentication, role-based access control, and comprehensive task organization features.",    technologies: ["Angular 18", "TypeScript", "ASP.NET Core", "Entity Framework", "SQL Server", "JWT", "Angular Material", "RxJS"],    liveDemo: "https://task-manager-daniel-harapiaks-projects.vercel.app/", 
     github: "https://github.com/danharap/TaskManager", // Update with actual repo URL when available
@@ -201,7 +193,7 @@ export const projectsData = [
     title: "PhotoCleaner — Cross-Platform Photo Cleanup App",
     description: "A swipe-based macOS and iOS app that lets you rapidly review your Apple Photos library and batch-delete unwanted photos with queued deletion, undo support, and a shared cross-platform SwiftUI core.",
     technologies: ["Swift", "SwiftUI", "PhotoKit", "Xcode", "iOS", "macOS"],
-    liveDemo: "#",
+    liveDemo: null,
     github: "https://github.com/danharap/PhotoCleaner",
     image: "📸",
     featured: true,
@@ -262,13 +254,4 @@ export const projectsData = [
       ]
     }
   },
-  {
-    id: 5,
-    title: "Data Analytics Dashboard",
-    description: "Interactive dashboard for data visualization and analytics using Python backend with React frontend, featuring real-time charts and reporting.",
-    technologies: ["React", "Python", "PostgreSQL", "Docker"],
-    liveDemo: "#",
-    github: "#",
-    image: "📊"
-  }
 ];
