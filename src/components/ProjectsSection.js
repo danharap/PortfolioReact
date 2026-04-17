@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
-import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Star, ChevronDown } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import useImagePath from '../hooks/useImagePath';
+
+const PROJECTS_INITIAL_VISIBLE = 3;
+const PROJECTS_LOAD_MORE_STEP = 3;
 
 const ProjectsSection = ({ darkMode }) => {
   const [titleRef, isTitleVisible] = useScrollAnimation();
   const [projectsRef, isProjectsVisible] = useScrollAnimation({ rootMargin: '0px 0px -100px 0px' });
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [visibleProjectCount, setVisibleProjectCount] = useState(PROJECTS_INITIAL_VISIBLE);
   const { getImagePath } = useImagePath();
+
+  const visibleProjects = projectsData.slice(0, visibleProjectCount);
+  const hiddenProjectCount = projectsData.length - visibleProjectCount;
+  const canShowMore = hiddenProjectCount > 0;
 
   const openProjectModal = (project) => {
     setSelectedProject(project);
@@ -54,7 +62,7 @@ const ProjectsSection = ({ darkMode }) => {
         <div 
           ref={projectsRef}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >          {projectsData.map((project, index) => (
+        >          {visibleProjects.map((project, index) => (
             <div 
               key={project.id} 
               className={`rounded-lg overflow-hidden shadow-lg transition-all duration-800 hover-lift magnetic-hover group relative cursor-pointer ${
@@ -172,7 +180,33 @@ const ProjectsSection = ({ darkMode }) => {
                 </div>
               </div>
             </div>
-          ))}        </div>
+          ))}
+        </div>
+
+        {canShowMore && (
+          <div className="flex flex-col items-center mt-12 space-y-3">
+            <button
+              type="button"
+              onClick={() =>
+                setVisibleProjectCount((n) =>
+                  Math.min(n + PROJECTS_LOAD_MORE_STEP, projectsData.length)
+                )
+              }
+              className={`inline-flex items-center gap-2 px-8 py-3 rounded-lg font-medium transition-colors ${
+                darkMode
+                  ? 'bg-gray-700 text-white hover:bg-gray-600 border border-gray-600'
+                  : 'bg-white text-gray-800 hover:bg-gray-50 border border-gray-300 shadow-sm'
+              }`}
+            >
+              <span>Show more projects</span>
+              <ChevronDown size={20} className="opacity-80" aria-hidden />
+            </button>
+            <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              Showing {visibleProjectCount} of {projectsData.length}
+              {hiddenProjectCount > 0 && ` · ${hiddenProjectCount} more below`}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Project Details Modal */}

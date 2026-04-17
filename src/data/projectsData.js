@@ -124,13 +124,97 @@ export const projectsData = [
     }
   },
   {
+    id: 2,
+    title: "PromoPilot — AI Social Media Dashboard",
+    description: "A full-stack social media management platform for small businesses and creators to schedule, publish, and track content across platforms from one dashboard. Built from a React prototype with mock data and migrated incrementally to a fully connected production app with real OAuth, a serverless publish worker, and live Supabase database.",
+    technologies: ["React", "Tailwind CSS", "Supabase", "PostgreSQL", "Vercel", "Node.js", "Mastodon OAuth", "Lucide React"],
+    liveDemo: "https://promo-pilot-five.vercel.app",
+    github: "https://github.com/danharap/PromoPilot",
+    image: "/images/promopilot/Thumbnail.png",
+    featured: true,
+    details: {
+      overview: "PromoPilot is a full-stack social media management platform built for small businesses and creators who want to schedule, publish, and track content across social platforms from a single dashboard. I built it from the ground up — starting from a React prototype with mock data and migrating it to a fully connected production web app with real authentication, a live database, Mastodon OAuth integration, and a cron-triggered serverless publish worker.",
+      keyFeatures: [
+        "Account authentication — sign up, sign in, and sign out with full session persistence powered by Supabase Auth",
+        "Create and publish posts — write content, select a target platform, and either publish immediately or schedule for a future date and time",
+        "Scheduled posts queue — view all posts with statuses (scheduled, publishing, published, failed) with filter controls by platform and status",
+        "Campaign management — organize posts under named campaigns, create new campaigns, and delete old ones",
+        "Mastodon integration — fully working OAuth 2.0 connection flow for any Mastodon instance, including immediate and scheduled publishing via a cron-triggered serverless function",
+        "Settings and profile — save business profile details and notification/AI preferences to the database",
+        "Analytics — placeholder analytics section structured to accept real data from the database as publish volume grows"
+      ],
+      technicalHighlights: [
+        "Centralized Supabase client in src/lib/supabase.js consumed by all service modules",
+        "AuthContext with onAuthStateChange listener for real-time session management across the entire app",
+        "Service layer (src/services/) separating all Supabase CRUD logic from UI — posts, campaigns, settings, platform connections",
+        "Custom hooks (usePosts, useSettings) encapsulating loading/error/refetch logic so pages stay clean",
+        "Platform abstraction layer (src/services/platforms/) designed for drop-in expansion to Twitter, Instagram, or Reddit",
+        "Vercel serverless functions for all sensitive operations — Mastodon OAuth app registration, token exchange, and publishing — so no API secrets reach the browser",
+        "Row Level Security on every Supabase table so users can only read and write their own data",
+        "Auto-profile trigger in PostgreSQL that creates a profiles row automatically on new user sign-up",
+        "Cron-compatible publish dispatcher at /api/cron/publish-scheduled, secured with a CRON_SECRET bearer token and triggered every minute via cron-job.org"
+      ],
+      architecture: {
+        frontend: [
+          "React (Create React App) with Tailwind CSS",
+          "AuthContext with onAuthStateChange for real-time session state",
+          "Custom hooks (usePosts, useSettings) for clean, reusable data-fetching logic",
+          "Lucide React for consistent iconography"
+        ],
+        backend: [
+          "Supabase — PostgreSQL database, Row Level Security, and Auth",
+          "Vercel API Routes (Node.js) for all sensitive server-side operations",
+          "Mastodon OAuth 2.0 — dynamic app registration per instance, tokens exchanged server-side",
+          "mastodon_instance_apps table caches per-instance OAuth registrations to avoid re-registering"
+        ],
+        deployment: [
+          "Vercel hosting with CI/CD — auto-deploys on every push to main",
+          "External cron service (cron-job.org) hits /api/cron/publish-scheduled every minute",
+          "CRON_SECRET bearer token secures the publish endpoint from unauthorized calls",
+          "No background server or queue infrastructure required — fully serverless on hobby tier"
+        ]
+      },
+      challenges: [
+        "Implementing Mastodon's decentralized OAuth flow — the app must dynamically register itself on any user-specified Mastodon instance rather than one hardcoded server",
+        "Achieving reliable scheduled publishing without a persistent server by combining Vercel serverless functions with an external cron trigger",
+        "Migrating incrementally from a mock-data prototype to a live backend without breaking the UI, routing, or component structure",
+        "Securing all OAuth token exchange and publish operations inside server-side API routes so no secrets ever reach the browser",
+        "Designing Row Level Security policies that enforce per-user data isolation at the database layer with zero client-side filtering"
+      ],
+      outcomes: [
+        "Delivered a fully working production social media scheduler with live Mastodon publishing and real scheduled-post processing",
+        "Achieved complete per-user data isolation through Supabase RLS without any client-side filtering logic",
+        "Built a scalable platform abstraction layer that makes adding Twitter, Instagram, or Reddit a drop-in change",
+        "Implemented production-grade OAuth 2.0 for a decentralized protocol — a non-trivial engineering challenge",
+        "Deployed a cron-based publish worker on a free/hobby tier with no background server or queue infrastructure"
+      ],
+      screenshots: [
+        {
+          title: "Product preview",
+          image: "/images/promopilot/Thumbnail.png",
+          description: "PromoPilot marketing landing page in a MacBook mockup — AI social media management positioning and live app URL"
+        },
+        {
+          title: "Landing page",
+          image: "/images/promopilot/Landing.png",
+          description: "Full-width marketing hero with features, pricing, reviews, and primary calls to action"
+        },
+        {
+          title: "Main dashboard",
+          image: "/images/promopilot/Dashboard.png",
+          description: "Authenticated dashboard with scheduled and published post stats, platform connections, and upcoming posts queue"
+        }
+      ]
+    }
+  },
+  {
     id: 3,
     title: "BudgetApp — Personal Finance Tracker",
     description: "A mobile-first personal finance PWA built with Expo and React Native, backed by Supabase. Features real-time transaction tracking, per-category budget limits, recurring bill management, and a premium dark UI — deployed to Vercel and installable on iOS.",
     technologies: ["Expo", "React Native", "TypeScript", "Supabase", "Postgres", "Zustand", "Expo Router", "Vercel"],
     liveDemo: "https://budget-app-inky-one.vercel.app/auth/sign-in",
     github: "https://github.com/danharap/BudgetApp",
-    image: "💰",
+    image: "/images/budgetapp/Thumbnail.png",
     featured: true,
     details: {
       overview: "BudgetApp is a mobile-first personal finance application built from scratch with Expo and React Native. It allows users to track their spending, set monthly budgets per category, monitor upcoming bills, and manage multiple bank and investment accounts — all backed by a live Supabase database with per-user data isolation. The app is deployed as a Progressive Web App (PWA) via Vercel, meaning it installs directly to your iPhone home screen and feels indistinguishable from a native app.",
@@ -195,7 +279,7 @@ export const projectsData = [
     technologies: ["Swift", "SwiftUI", "PhotoKit", "Xcode", "iOS", "macOS"],
     liveDemo: null,
     github: "https://github.com/danharap/PhotoCleaner",
-    image: "📸",
+    image: "/images/photocleaner/Thumbnail.png",
     featured: true,
     details: {
       overview: "PhotoCleaner is a cross-platform macOS and iOS SwiftUI app that solves a real friction point: cleaning up a bloated photo library is tedious in the native Photos app. PhotoCleaner replaces that with a fast swipe-review card workflow backed by PhotoKit — the same framework Apple Photos uses — so every action operates on your real library. I built it initially for one platform, then refactored it into a shared architecture (PhotoCleanerShared) so core models, service logic, the view model, and reusable views all run on both targets without duplication, while platform-specific UI wrappers handle the AppKit/UIKit differences cleanly.",

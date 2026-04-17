@@ -73,14 +73,18 @@ const HeroSection = ({ darkMode, scrollToSection }) => {
               <span>Get In Touch</span>
             </button>
             
-            <button className={`px-8 py-3 border rounded-md transition-colors flex items-center space-x-2 magnetic-hover hover-lift ${
-              darkMode 
-                ? 'border-gray-600 text-gray-300 hover:bg-gray-800' 
-                : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-            }`}>
+            <a
+              href="/resume.pdf"
+              download="Daniel_Harapiak_Resume.pdf"
+              className={`px-8 py-3 border rounded-md transition-colors flex items-center space-x-2 magnetic-hover hover-lift ${
+                darkMode 
+                  ? 'border-gray-600 text-gray-300 hover:bg-gray-800' 
+                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+              }`}
+            >
               <Download size={16} />
               <span>Download Resume</span>
-            </button>
+            </a>
           </div>
 
           {/* Social Media Links */}

@@ -1,0 +1,160 @@
+%-------------------------
+% Resume in Latex
+% Based on Jake Gutierrez template
+%------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-.55in}
+\addtolength{\textheight}{1.1in}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\titlerule \vspace{-4pt}]
+
+\pdfgentounicode=1
+
+% Custom commands
+\newcommand{\resumeItem}[1]{\item\small{#1 \vspace{-2pt}}}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small#3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \vspace{-1pt}\item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \small#1 & #2 \\
+  \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%==================== HEADER ====================%
+\begin{center}
+  \textbf{\Huge \scshape Daniel Harapiak} \\ \vspace{1pt}
+  \small Burlington, ON $|$ 289-828-0204 $|$
+  \href{mailto:daniel@harapiak.com}{\underline{daniel@harapiak.com}}
+\end{center}
+
+%==================== EDUCATION ====================%
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {University of Western Ontario}{London, ON}
+    {Bachelor of Science in Computer Science}{Expected Apr. 2027}
+\resumeSubHeadingListEnd
+
+
+%==================== EXPERIENCE ====================%
+\section{Experience}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+  {Hatch Ltd.}{Mississauga, ON}
+  {Software Developer Intern}{May 2025 -- Aug. 2025}
+\resumeItemListStart
+  \resumeItem{Rebuilt an internal resume builder from PowerApps using Angular and ASP.NET after Microsoft hosting costs became unsustainable}
+  \resumeItem{Designed and implemented a SQL Server database and deployed the system on Azure for company-wide scalability}
+  \resumeItem{Integrated MSAL authentication, persistent user profiles, and an admin management panel}
+  \resumeItem{Delivered a fully customizable platform now used by 10{,}000+ employees, significantly reducing licensing costs}
+  \resumeItem{Contributed UI components and validation logic to an internal budget request application}
+\resumeItemListEnd
+
+\resumeSubheading
+  {Hatch Ltd.}{Mississauga, ON}
+  {Software Developer Intern}{May. 2024 -- Aug. 2024}
+\resumeItemListStart
+  \resumeItem{Designed and integrated a carbon calculator tool for sustainable construction planning using third-party APIs}
+  \resumeItem{Developed full-stack features using C\# and RESTful APIs}
+  \resumeItem{Implemented data validation and error handling to improve system reliability}
+  \resumeItem{Collaborated in Agile sprints to deliver project milestones on schedule}
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%==================== PROJECTS ====================%
+\section{Projects}
+\resumeSubHeadingListStart
+
+\resumeProjectHeading
+  {\textbf{Carbon Calculator Development} $|$ \emph{C\#, REST APIs, Azure DevOps}}{}
+\resumeItemListStart
+  \resumeItem{Built and deployed a tool to measure the carbon footprint of construction projects}
+  \resumeItem{Integrated third-party APIs and validation logic into an enterprise platform}
+  \resumeItem{Improved sustainability decision-making for large-scale infrastructure projects}
+\resumeItemListEnd
+
+\resumeProjectHeading
+  {\textbf{Financial Time Series Forecasting} $|$ \emph{Python, LSTM, XGBoost}}{}
+\resumeItemListStart
+  \resumeItem{Developed predictive models to analyze and forecast S\&P 500 stock trends}
+  \resumeItem{Engineered time-series features and evaluated models using multiple performance metrics}
+  \resumeItem{Achieved up to 97\% predictive accuracy using XGBoost after model tuning}
+\resumeItemListEnd
+
+\resumeProjectHeading
+  {\textbf{BudgetApp --- Personal Finance Tracker} $|$ \emph{React Native, Expo, TypeScript, Supabase}}{}
+\resumeItemListStart
+  \resumeItem{Built a cross-platform mobile finance app with transaction tracking, budget management, and bill reminders}
+  \resumeItem{Architected with Expo Router, Zustand for global state, and Supabase (Postgres) for real-time data persistence}
+  \resumeItem{Implemented user authentication and deployed a live production build via Vercel}
+\resumeItemListEnd
+
+\resumeProjectHeading
+  {\textbf{TaskManager --- Enterprise Task Management System} $|$ \emph{Angular 18, ASP.NET Core, SQL Server}}{}
+\resumeItemListStart
+  \resumeItem{Developed a full-stack task management platform with role-based access control, task hierarchies, and a calendar view}
+  \resumeItem{Built a RESTful ASP.NET Core backend with Entity Framework Core and JWT authentication}
+  \resumeItem{Designed a responsive Angular 18 frontend using Angular Material and RxJS; deployed to production on Vercel}
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%==================== TECHNICAL SKILLS ====================%
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=1pt]
+\small{\item{
+  \textbf{Languages:} C\#, Java, Python, C++, JavaScript, TypeScript, SQL \\
+  \textbf{Frameworks:} ASP.NET, Angular, React, React Native, Node.js \\
+  \textbf{Databases:} SQL Server, PostgreSQL (Supabase) \\
+  \textbf{Tools \& Platforms:} Azure, Git, GitHub, Docker, VS Code, Postman \\
+  \textbf{Practices:} REST APIs, Agile (Scrum), Data Modeling, UI/UX Principles
+}}
+\end{itemize}
+
+\end{document}
