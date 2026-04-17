@@ -136,7 +136,7 @@ export const projectsData = [
     title: "BudgetApp — Personal Finance Tracker",
     description: "A mobile-first personal finance PWA built with Expo and React Native, backed by Supabase. Features real-time transaction tracking, per-category budget limits, recurring bill management, and a premium dark UI — deployed to Vercel and installable on iOS.",
     technologies: ["Expo", "React Native", "TypeScript", "Supabase", "Postgres", "Zustand", "Expo Router", "Vercel"],
-    liveDemo: "https://budget-app-danharap.vercel.app/",
+    liveDemo: "https://budget-app-inky-one.vercel.app/auth/sign-in",
     github: "https://github.com/danharap/BudgetApp",
     image: "💰",
     featured: true,
