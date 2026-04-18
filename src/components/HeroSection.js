@@ -1,146 +1,181 @@
 import React from 'react';
-import { Mail, MapPin, Download, ChevronDown, Github, Linkedin } from 'lucide-react';
-import useScrollAnimation from '../hooks/useScrollAnimation';
-import { useTypewriter } from '../hooks/useAnimations';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Mail, MapPin, Download, ArrowDownRight, Github, Linkedin } from 'lucide-react';
+import Container from './ui/Container';
+import Button from './ui/Button';
+
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.08 },
+  },
+};
+
+const item = (reduce) => ({
+  hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: reduce
+      ? { duration: 0 }
+      : { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+  },
+});
 
 const HeroSection = ({ darkMode, scrollToSection }) => {
-  const [heroRef, isHeroVisible] = useScrollAnimation();
-  const typewriterText = useTypewriter('Computer Science Student & Developer', 80, 1000);
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="home" className="pt-20 min-h-screen flex items-center">
-      <div 
-        ref={heroRef}
-        className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 transition-all duration-1000 ${
-          isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
-      >        <div className="text-center">          <div className={`mb-8 transition-all duration-1200 delay-200 animate-float ${
-            isHeroVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          }`}>
-            <div className={`inline-block p-4 rounded-full mb-6 animate-pulse-glow ${
-              darkMode ? 'bg-gray-800' : 'bg-gray-100'
-            }`}>
-              <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold morphing-blob">
-                DH
-              </div>
-            </div>
-          </div>
-          
-          <h1 className={`text-5xl md:text-7xl font-bold mb-6 gradient-text transition-all duration-1000 delay-400 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            Daniel Harapiak
-          </h1>
-          
-          <div className={`text-xl md:text-2xl mb-4 transition-all duration-1000 delay-600 min-h-[2rem] ${
-            darkMode ? 'text-gray-300' : 'text-gray-600'
-          } ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            {isHeroVisible && (
-              <span className="animate-typewriter">
-                {typewriterText}
-              </span>
-            )}
-          </div>
-          
-          <div className={`flex items-center justify-center space-x-4 mb-8 transition-all duration-1000 delay-700 ${
-            darkMode ? 'text-gray-400' : 'text-gray-500'
-          } ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <div className="flex items-center space-x-1">
-              <MapPin size={16} />
-              <span>Burlington, Ontario, Canada</span>
-            </div>
-          </div>
-          
-          <p className={`text-lg max-w-2xl mx-auto mb-8 transition-all duration-1000 delay-800 ${
-            darkMode ? 'text-gray-300' : 'text-gray-600'
-          } ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            Passionate about creating innovative solutions through clean code and modern technologies. 
-            I love turning complex problems into simple, beautiful designs.
-          </p>          <div className={`flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 transition-all duration-1000 delay-1000 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <button 
+    <section
+      id="home"
+      className="relative flex min-h-screen items-center pt-24 pb-20 md:pt-28 md:pb-28"
+      aria-labelledby="hero-heading"
+    >
+      <Container>
+        <motion.div
+          className="mx-auto max-w-4xl text-center"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.p
+            variants={item(reduceMotion)}
+            className={`mb-6 text-xs font-semibold uppercase tracking-[0.25em] ${
+              darkMode ? 'text-blue-400/90' : 'text-blue-600'
+            }`}
+          >
+            Full-stack · Product-minded · Ships quality
+          </motion.p>
+
+          <motion.h1
+            id="hero-heading"
+            variants={item(reduceMotion)}
+            className={`font-display text-[2.65rem] font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl ${
+              darkMode ? 'text-white' : 'text-zinc-900'
+            }`}
+          >
+            I design and build{' '}
+            <span className="text-gradient">polished</span> digital products.
+          </motion.h1>
+
+          <motion.p
+            variants={item(reduceMotion)}
+            className={`mx-auto mt-8 max-w-2xl text-lg leading-relaxed md:text-xl ${
+              darkMode ? 'text-zinc-400' : 'text-zinc-600'
+            }`}
+          >
+            Computer Science at Western University. I care about real UX, solid architecture, and
+            software that holds up after launch — from React and mobile to APIs, data, and cloud.
+          </motion.p>
+
+          <motion.div
+            variants={item(reduceMotion)}
+            className={`mt-6 flex items-center justify-center gap-2 text-sm ${
+              darkMode ? 'text-zinc-500' : 'text-zinc-500'
+            }`}
+          >
+            <MapPin size={16} className="shrink-0 opacity-80" aria-hidden />
+            <span>Burlington, Ontario, Canada</span>
+          </motion.div>
+
+          <motion.div
+            variants={item(reduceMotion)}
+            className="mt-12 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center"
+          >
+            <Button
+              as="button"
+              type="button"
+              variant="primary"
+              className="min-h-[48px] px-8 py-3.5 text-base"
               onClick={() => scrollToSection('contact')}
-              className="px-8 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center space-x-2 magnetic-hover hover-lift"
             >
-              <Mail size={16} />
-              <span>Get In Touch</span>
-            </button>
-            
+              <Mail size={18} aria-hidden />
+              Start a conversation
+            </Button>
+            <Button
+              as="button"
+              type="button"
+              variant="secondary"
+              className="min-h-[48px] px-8 py-3.5 text-base"
+              onClick={() => scrollToSection('projects')}
+            >
+              View selected work
+              <ArrowDownRight size={18} className="opacity-80" aria-hidden />
+            </Button>
+          </motion.div>
+
+          <motion.div variants={item(reduceMotion)} className="mt-5">
             <a
               href="/resume.pdf"
               download="Daniel_Harapiak_Resume.pdf"
-              className={`px-8 py-3 border rounded-md transition-colors flex items-center space-x-2 magnetic-hover hover-lift ${
-                darkMode 
-                  ? 'border-gray-600 text-gray-300 hover:bg-gray-800' 
-                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+              className={`inline-flex items-center gap-2 text-sm font-medium underline-offset-4 transition-colors hover:underline ${
+                darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-zinc-600 hover:text-zinc-900'
               }`}
             >
-              <Download size={16} />
-              <span>Download Resume</span>
+              <Download size={16} aria-hidden />
+              Download resume (PDF)
             </a>
-          </div>
+          </motion.div>
 
-          {/* Social Media Links */}
-          <div className={`flex items-center justify-center space-x-6 mt-8 transition-all duration-1000 delay-1100 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <a 
+          <motion.div
+            variants={item(reduceMotion)}
+            className="mt-14 flex items-center justify-center gap-4"
+          >
+            <a
               href="https://github.com/danharap"
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 rounded-full transition-colors hover:scale-110 transform ${
-                darkMode 
-                  ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+              className={`rounded-full p-3 transition-colors ${
+                darkMode
+                  ? 'text-zinc-400 hover:bg-white/5 hover:text-white'
+                  : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900'
               }`}
-              aria-label="GitHub Profile"
+              aria-label="GitHub"
             >
-              <Github size={24} />
+              <Github size={22} />
             </a>
-            <a 
+            <a
               href="https://www.linkedin.com/in/danielharapiak/"
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 rounded-full transition-colors hover:scale-110 transform ${
-                darkMode 
-                  ? 'text-gray-400 hover:text-blue-400 hover:bg-gray-800' 
-                  : 'text-gray-600 hover:text-blue-600 hover:bg-gray-100'
+              className={`rounded-full p-3 transition-colors ${
+                darkMode
+                  ? 'text-zinc-400 hover:bg-white/5 hover:text-blue-300'
+                  : 'text-zinc-600 hover:bg-zinc-100 hover:text-blue-700'
               }`}
-              aria-label="LinkedIn Profile"
+              aria-label="LinkedIn"
             >
-              <Linkedin size={24} />
+              <Linkedin size={22} />
             </a>
-            <a 
+            <a
               href="mailto:daniel@harapiak.com"
-              className={`p-2 rounded-full transition-colors hover:scale-110 transform ${
-                darkMode 
-                  ? 'text-gray-400 hover:text-green-400 hover:bg-gray-800' 
-                  : 'text-gray-600 hover:text-green-600 hover:bg-gray-100'
+              className={`rounded-full p-3 transition-colors ${
+                darkMode
+                  ? 'text-zinc-400 hover:bg-white/5 hover:text-emerald-300'
+                  : 'text-zinc-600 hover:bg-zinc-100 hover:text-emerald-700'
               }`}
-              aria-label="Email Contact"
+              aria-label="Email"
             >
-              <Mail size={24} />
+              <Mail size={22} />
             </a>
-          </div>
-          <div className={`mt-12 transition-all duration-1000 delay-1200 ${
-            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <ChevronDown 
-              size={24} 
-              className={`mx-auto animate-bounce ${
-                darkMode ? 'text-gray-400' : 'text-gray-500'
-              }`} 
-            />
-          </div>
-        </div>
-      </div>
+          </motion.div>
+
+          {!reduceMotion && (
+            <motion.button
+              type="button"
+              variants={item(false)}
+              onClick={() => scrollToSection('projects')}
+              className={`mx-auto mt-16 flex flex-col items-center gap-2 text-xs font-medium uppercase tracking-widest opacity-70 transition-opacity hover:opacity-100 ${
+                darkMode ? 'text-zinc-500' : 'text-zinc-500'
+              }`}
+              aria-label="Scroll to projects"
+            >
+              <span>Scroll</span>
+              <span className="block h-10 w-px bg-gradient-to-b from-zinc-500 to-transparent dark:from-zinc-600" />
+            </motion.button>
+          )}
+        </motion.div>
+      </Container>
     </section>
   );
 };

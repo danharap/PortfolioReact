@@ -1,70 +1,91 @@
 import React from 'react';
-import useScrollAnimation from '../hooks/useScrollAnimation';
+import Container from './ui/Container';
+import SectionHeader from './ui/SectionHeader';
+import Reveal from './ui/Reveal';
 
 const AboutSection = ({ darkMode }) => {
-  const [titleRef, isTitleVisible] = useScrollAnimation();
-  const [contentRef, isContentVisible] = useScrollAnimation({ rootMargin: '0px 0px -100px 0px' });
-
   return (
-    <section id="about" className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div 
-          ref={titleRef}
-          className={`text-center mb-16 transition-all duration-800 ${
-            isTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <h2 className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            About Me
-          </h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-        </div>        
-        <div 
-          ref={contentRef}
-          className={`grid md:grid-cols-2 gap-12 items-center transition-all duration-1000 delay-300 ${
-            isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <div>
-            <div className={`p-8 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
-              <h3 className={`text-2xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                My Journey
-              </h3>              <p className={`text-lg leading-relaxed mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                As a Computer Science student with a specialization in software development, I'm dedicated to 
-                creating innovative solutions that make a difference. My journey in technology began 
-                with curiosity and has evolved into a deep commitment to excellence in software development.
-              </p>
-              <p className={`text-lg leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                I specialize in full-stack development, working with modern technologies like React, 
-                Python, and cloud platforms. I believe in writing clean, maintainable code and 
-                creating user experiences that are both functional and delightful.
-              </p>
-            </div>
+    <section
+      id="about"
+      className={`py-24 md:py-32 ${darkMode ? 'bg-ink-950' : 'bg-white'}`}
+      aria-labelledby="about-heading"
+    >
+      <Container>
+        <div className="grid gap-16 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <Reveal>
+              <SectionHeader
+                darkMode={darkMode}
+                eyebrow="Positioning"
+                title="Builder first. Details always."
+                titleId="about-heading"
+                align="left"
+              />
+            </Reveal>
           </div>
-          
-          <div className="space-y-6">            <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
-              <h4 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                Education
-              </h4>
-              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                <strong>Western University</strong><br />
-                Bachelor of Science in Computer Science<br />
-                Specialization: Computer Science<br />
-                London, Ontario, Canada
+          <div className="space-y-8 lg:col-span-7">
+            <Reveal delay={0.08}>
+              <p
+                className={`text-xl font-medium leading-relaxed md:text-2xl ${
+                  darkMode ? 'text-zinc-200' : 'text-zinc-800'
+                }`}
+              >
+                I ship end-to-end software: interfaces people enjoy using, APIs and data layers that stay
+                coherent under load, and deployments that do not fall over on day two.
               </p>
-            </div>
-              <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-900' : 'bg-white'} shadow-lg`}>
-              <h4 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                Interests
-              </h4>
-              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                Full-Stack Development, Cloud Computing, 
-                Machine Learning, Open Source Contribution
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className={`text-lg leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                Recent work spans enterprise Angular and .NET at Hatch, Supabase-backed React products
+                (PromoPilot, BudgetApp), and native Swift experiences (PhotoCleaner). I care about product
+                polish, accessibility, and code that the next developer can pick up without pain.
               </p>
-            </div>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div
+                  className={`rounded-2xl border p-6 ${
+                    darkMode ? 'border-white/[0.08] bg-zinc-900/40' : 'border-zinc-200 bg-zinc-50'
+                  }`}
+                >
+                  <p
+                    className={`text-xs font-semibold uppercase tracking-widest ${
+                      darkMode ? 'text-blue-400' : 'text-blue-600'
+                    }`}
+                  >
+                    Education
+                  </p>
+                  <p className={`mt-3 font-semibold ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                    Western University
+                  </p>
+                  <p className={`mt-1 text-sm leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                    B.Sc. Computer Science — software development focus. London, ON.
+                  </p>
+                </div>
+                <div
+                  className={`rounded-2xl border p-6 ${
+                    darkMode ? 'border-white/[0.08] bg-zinc-900/40' : 'border-zinc-200 bg-zinc-50'
+                  }`}
+                >
+                  <p
+                    className={`text-xs font-semibold uppercase tracking-widest ${
+                      darkMode ? 'text-violet-400' : 'text-violet-600'
+                    }`}
+                  >
+                    Focus
+                  </p>
+                  <p className={`mt-3 font-semibold ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                    Product-grade delivery
+                  </p>
+                  <p className={`mt-1 text-sm leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                    UX, system design, auth, data modeling, and calm production rollouts.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

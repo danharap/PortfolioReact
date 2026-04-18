@@ -1,75 +1,103 @@
 import React from 'react';
 import { Code, Database, Server, Wrench } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { skillsData } from '../data/skillsData';
-import useScrollAnimation from '../hooks/useScrollAnimation';
+import Container from './ui/Container';
+import SectionHeader from './ui/SectionHeader';
+import Reveal from './ui/Reveal';
+
+const skillCategories = [
+  { key: 'frontend', title: 'Frontend', icon: Code, accent: 'from-blue-500/20 to-transparent' },
+  { key: 'backend', title: 'Backend', icon: Server, accent: 'from-emerald-500/15 to-transparent' },
+  { key: 'databases', title: 'Data', icon: Database, accent: 'from-violet-500/20 to-transparent' },
+  { key: 'tools', title: 'Platforms', icon: Wrench, accent: 'from-amber-500/15 to-transparent' },
+];
 
 const SkillsSection = ({ darkMode }) => {
-  const [titleRef, isTitleVisible] = useScrollAnimation();
-  const [skillsRef, isSkillsVisible] = useScrollAnimation({ rootMargin: '0px 0px -100px 0px' });
-
-  const skillCategories = [
-    { key: 'frontend', title: 'Frontend', icon: Code, color: 'text-blue-500' },
-    { key: 'backend', title: 'Backend', icon: Server, color: 'text-green-500' },
-    { key: 'databases', title: 'Databases', icon: Database, color: 'text-purple-500' },
-    { key: 'tools', title: 'Tools & Platforms', icon: Wrench, color: 'text-orange-500' }
-  ];
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="skills" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div 
-          ref={titleRef}
-          className={`text-center mb-16 transition-all duration-800 ${
-            isTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <h2 className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            Technical Skills
-          </h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-        </div>
-        
-        <div 
-          ref={skillsRef}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {skillCategories.map(({ key, title, icon: Icon, color }, index) => (
-            <div 
-              key={key} 
-              className={`p-8 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-50'} shadow-lg hover-lift transition-all duration-800 ${
-                isSkillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+    <section
+      id="skills"
+      className={`py-24 md:py-32 ${darkMode ? 'bg-zinc-950/50' : 'bg-zinc-50'}`}
+      aria-labelledby="skills-heading"
+    >
+      <Container>
+        <Reveal>
+          <SectionHeader
+            darkMode={darkMode}
+            eyebrow="Capabilities"
+            title="Stack I use to go from idea to production"
+            titleId="skills-heading"
+            description="Grouped by how I think about the work — not an exhaustive list, but the tools I reach for when building real products."
+            align="left"
+          />
+        </Reveal>
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {skillCategories.map(({ key, title, icon: Icon, accent }, index) => (
+            <motion.div
+              key={key}
+              initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+              whileInView={reduceMotion ? false : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              className={`relative overflow-hidden rounded-2xl border p-7 shadow-card ${
+                darkMode
+                  ? 'border-white/[0.08] bg-zinc-900/50'
+                  : 'border-zinc-200/80 bg-white'
               }`}
-              style={{ 
-                transitionDelay: isSkillsVisible ? `${index * 200}ms` : '0ms' 
-              }}
             >
-              <div className="flex items-center mb-6">
-                <Icon className={`${color} mr-3`} size={24} />
-                <h3 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              <div
+                className={`pointer-events-none absolute inset-0 bg-gradient-to-br opacity-100 ${accent}`}
+                aria-hidden
+              />
+              <div className="relative">
+                <div
+                  className={`mb-6 inline-flex rounded-xl border p-3 ${
+                    darkMode ? 'border-white/10 bg-white/5' : 'border-zinc-200 bg-zinc-50'
+                  }`}
+                >
+                  <Icon
+                    className={darkMode ? 'text-blue-400' : 'text-blue-600'}
+                    size={22}
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
+                </div>
+                <h3 className={`font-display text-lg font-semibold ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                   {title}
                 </h3>
+                <ul className="mt-5 space-y-3">
+                  {skillsData[key].map((skill) => (
+                    <li key={skill.name} className="flex items-center gap-3">
+                      <span
+                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ring-1 ${
+                          darkMode ? 'bg-white/5 ring-white/10' : 'bg-white ring-zinc-200'
+                        }`}
+                      >
+                        <img
+                          src={skill.icon}
+                          alt=""
+                          className="h-5 w-5 object-contain opacity-90"
+                          loading="lazy"
+                        />
+                      </span>
+                      <span
+                        className={`text-sm font-medium ${
+                          darkMode ? 'text-zinc-300' : 'text-zinc-700'
+                        }`}
+                      >
+                        {skill.name}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              
-              <div className="space-y-3">
-                {skillsData[key].map((skill, skillIndex) => (
-                  <div key={skillIndex} className="flex items-center space-x-3 group">
-                    <div className="w-8 h-8 flex items-center justify-center">
-                      <img 
-                        src={skill.icon} 
-                        alt={`${skill.name} icon`}
-                        className="w-6 h-6 object-contain transition-transform group-hover:scale-110"
-                      />
-                    </div>
-                    <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} group-hover:text-blue-500 transition-colors`}>
-                      {skill.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
