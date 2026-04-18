@@ -28,11 +28,11 @@ const StatsSection = ({ darkMode }) => {
   useEffect(() => {
     if (!isVisible) return undefined;
     if (reduceMotion) {
-      setCounts([5, 7, 4]);
+      setCounts([5, 7, 5]);
       return undefined;
     }
 
-    const targetValues = [5, 7, 4];
+    const targetValues = [5, 7, 5];
     const duration = 1600;
     const steps = 50;
     const stepDuration = duration / steps;
@@ -81,7 +81,7 @@ const StatsSection = ({ darkMode }) => {
       value: counts[2],
       suffix: '',
       label: 'Featured builds',
-      sub: 'Portfolio case studies with depth — from idea to deploy',
+      sub: 'Portfolio builds with case-study depth — from idea to deploy',
     },
   ];
 

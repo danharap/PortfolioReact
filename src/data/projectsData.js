@@ -334,4 +334,82 @@ export const projectsData = [
       ]
     }
   },
+  {
+    id: 5,
+    title: "Nudge Film — pick fast",
+    description:
+      "Full-stack Next.js app that turns “what should we watch?” into a tight, TMDb-backed shortlist: guided vibes and filters, ranked cards with context, and a signed-in watch library on Supabase — deployed on Vercel.",
+    technologies: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Supabase",
+      "PostgreSQL",
+      "Row Level Security",
+      "Zod",
+      "TMDb API",
+      "Vercel",
+    ],
+    liveDemo: null,
+    github: "https://github.com/danharap/NudgeFilm",
+    image: "/images/nudgefilm/Thumbnail.png",
+    details: {
+      overview:
+        "Nudge Film is a calmer way to choose a film. Streaming catalogs are huge and filters are noisy; this app trades infinite scrolling for a short guided flow (vibes, optional strict genres, runtime, era, rating, language, streaming availability) and returns a small, credible shortlist with posters and context. The Movie Database (TMDb) powers discovery and metadata; Supabase (Postgres + Auth + RLS) backs accounts, watchlists, watched, and dismissed titles; everything ships on Vercel. Uses the TMDb API — not endorsed or certified by TMDb (disclosure in README).",
+      keyFeatures: [
+        "Landing with product story, steps, and CTAs into the picker and auth",
+        "Recommendation flow: vibe chips (multi-select, 1–8) mapped to curated TMDb genre buckets on the server",
+        "Optional strict TMDb genres — override vibes when the user locks genres; discover query + post-filters so titles match selected genres when possible, with fallback and a second pass using movie/{id} for accurate genre tags",
+        "Filters: min/max runtime, min vote average, release year range, original language, “surprise me” and “hidden gems” scoring tilts, streaming-only + region (watch providers)",
+        "Results shortlist cards; last run held in sessionStorage until refresh (anonymous-friendly)",
+        "Movie detail view backed by TMDb data",
+        "Supabase Auth — email flows; middleware refreshes the session on navigation",
+        "Signed-in library: watchlist, watched, dismissed — recommendations exclude watched and dismissed server-side when logged in",
+        "Optional analytics-style logging into recommendation_sessions for signed-in users when enabled in the API route",
+      ],
+      technicalHighlights: [
+        "Next.js 15 App Router + React 19; application code under web/ with Vercel Root Directory set to web (avoids platform NOT_FOUND)",
+        "TMDb v3 client server-only — API key / read access token never exposed to the browser",
+        "Recommendation engine (features/recommendations/engine.ts): builds Discover params from vibes and/or locked genres, paginates when genre-locked, scores, dedupes, hydrates top picks, attaches human-readable reasons",
+        "Zod-validated recommendation request bodies",
+        "Config-driven mood and genre mapping (config/moodMappings.ts, config/tmdbGenres.ts) and branding (config/brand.ts)",
+        "Supabase schema: profiles (1:1 with auth.users via trigger), movies cache, watched_movies, watchlist, dismissed_movies, preferences, recommendation_sessions — RLS so users only touch their own rows; anon key + RLS, no service role in the shipped app",
+        "Production discipline: next build without Turbopack for reliable Vercel deploys where documented",
+      ],
+      architecture: {
+        frontend: [
+          "Next.js App Router, React 19, TypeScript, Tailwind CSS 4",
+          "Client recommendation form and results UI; sessionStorage for anonymous shortlist state",
+        ],
+        server: [
+          "Route handlers and server code under web/src — e.g. /api/recommendations; TMDb client under web/src/lib/tmdb/",
+          "Browser only talks to the Next app — no TMDb secrets in client bundles",
+        ],
+        data: [
+          "Supabase Postgres + Auth + Row Level Security",
+          "Optional session logging to recommendation_sessions when configured",
+        ],
+      },
+      challenges: [
+        "Genre lock vs vibe dilution — strict genre mode must not silently let unrelated moods leak into results when the user asked for precise genres",
+        "Vercel monorepo layout — app must deploy from web/ root; misconfiguration surfaces as generic platform 404",
+        "Balancing anonymous-first UX (sessionStorage shortlist) with signed-in persistence and server-side exclusion rules",
+        "TMDb Discover semantics (with_genres, pagination) vs post-filters for stricter matching without emptying the candidate pool",
+      ],
+      outcomes: [
+        "Shipped a full-stack decision product: guided UX, server-side discovery, and auth-backed library in one cohesive app",
+        "Demonstrated secure third-party API usage, Zod contracts, and Supabase RLS in production shape",
+        "Clear deploy story (documented root directory, stable build) suitable for portfolio and recruiter review",
+      ],
+      screenshots: [
+        {
+          title: "Product preview",
+          image: "/images/nudgefilm/Thumbnail.png",
+          description:
+            "Marketing hero — Nudge Film positioning, primary CTA, and sign-in path on a MacBook mockup (dark + yellow brand)",
+        },
+      ],
+    },
+  },
 ];

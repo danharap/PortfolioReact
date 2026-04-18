@@ -3,6 +3,7 @@ const cdn = (path) =>
 
 export const skillsData = {
   frontend: [
+    { name: 'Next.js', icon: cdn('nextjs/nextjs-original.svg') },
     { name: 'React', icon: cdn('react/react-original.svg') },
     { name: 'React Native', icon: cdn('react/react-original.svg') },
     { name: 'Angular', icon: cdn('angular/angular-original.svg') },
