@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useReducedMotion } from 'framer-motion';
-import { Layers, Rocket, Sparkles } from 'lucide-react';
+import { Layers, Rocket, LayoutGrid } from 'lucide-react';
 import Container from './ui/Container';
 import Reveal from './ui/Reveal';
 
@@ -28,11 +28,11 @@ const StatsSection = ({ darkMode }) => {
   useEffect(() => {
     if (!isVisible) return undefined;
     if (reduceMotion) {
-      setCounts([3, 25, 500]);
+      setCounts([5, 7, 4]);
       return undefined;
     }
 
-    const targetValues = [3, 25, 500];
+    const targetValues = [5, 7, 4];
     const duration = 1600;
     const steps = 50;
     const stepDuration = duration / steps;
@@ -67,21 +67,21 @@ const StatsSection = ({ darkMode }) => {
       value: counts[0],
       suffix: '+',
       label: 'Years building',
-      sub: 'Internships & self-directed products',
+      sub: 'Coding, internships, and shipping products end to end',
     },
     {
       icon: Rocket,
       value: counts[1],
       suffix: '+',
       label: 'Shipped projects',
-      sub: 'Web, mobile, and internal tools',
+      sub: 'Web apps, mobile, native clients, and internal tools',
     },
     {
-      icon: Sparkles,
+      icon: LayoutGrid,
       value: counts[2],
-      suffix: '+',
-      label: 'Commits & iterations',
-      sub: 'Refining until it feels right',
+      suffix: '',
+      label: 'Featured builds',
+      sub: 'Portfolio case studies with depth — from idea to deploy',
     },
   ];
 

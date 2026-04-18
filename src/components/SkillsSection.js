@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code, Database, Server, Wrench } from 'lucide-react';
+import { Code, Database, Server, Smartphone, Wrench } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { skillsData } from '../data/skillsData';
 import Container from './ui/Container';
@@ -7,10 +7,11 @@ import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
 
 const skillCategories = [
-  { key: 'frontend', title: 'Frontend', icon: Code, accent: 'from-blue-500/20 to-transparent' },
-  { key: 'backend', title: 'Backend', icon: Server, accent: 'from-emerald-500/15 to-transparent' },
+  { key: 'frontend', title: 'Frontend & web', icon: Code, accent: 'from-blue-500/20 to-transparent' },
+  { key: 'mobile', title: 'Mobile & native', icon: Smartphone, accent: 'from-sky-500/15 to-transparent' },
+  { key: 'backend', title: 'Backend & APIs', icon: Server, accent: 'from-emerald-500/15 to-transparent' },
   { key: 'databases', title: 'Data', icon: Database, accent: 'from-violet-500/20 to-transparent' },
-  { key: 'tools', title: 'Platforms', icon: Wrench, accent: 'from-amber-500/15 to-transparent' },
+  { key: 'tools', title: 'Platforms & tooling', icon: Wrench, accent: 'from-amber-500/15 to-transparent' },
 ];
 
 const SkillsSection = ({ darkMode }) => {
@@ -34,7 +35,7 @@ const SkillsSection = ({ darkMode }) => {
           />
         </Reveal>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {skillCategories.map(({ key, title, icon: Icon, accent }, index) => (
             <motion.div
               key={key}
