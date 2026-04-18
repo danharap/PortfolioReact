@@ -13,15 +13,13 @@ const AboutSection = ({ darkMode }) => {
       <Container>
         <div className="grid gap-16 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
-            <Reveal>
-              <SectionHeader
-                darkMode={darkMode}
-                eyebrow="Positioning"
-                title="Builder first. Details always."
-                titleId="about-heading"
-                align="left"
-              />
-            </Reveal>
+            <SectionHeader
+              darkMode={darkMode}
+              eyebrow="Positioning"
+              title="Builder first. Details always."
+              titleId="about-heading"
+              align="left"
+            />
           </div>
           <div className="space-y-8 lg:col-span-7">
             <Reveal delay={0.08}>

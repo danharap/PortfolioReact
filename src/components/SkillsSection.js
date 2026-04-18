@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { skillsData } from '../data/skillsData';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
-import Reveal from './ui/Reveal';
+import { EASE, DURATION, VIEWPORT, STAGGER } from '../motion/constants';
 
 const skillCategories = [
   { key: 'frontend', title: 'Frontend & web', icon: Code, accent: 'from-blue-500/20 to-transparent' },
@@ -24,25 +24,28 @@ const SkillsSection = ({ darkMode }) => {
       aria-labelledby="skills-heading"
     >
       <Container>
-        <Reveal>
-          <SectionHeader
-            darkMode={darkMode}
-            eyebrow="Capabilities"
-            title="Stack I use to go from idea to production"
-            titleId="skills-heading"
-            description="Grouped by how I think about the work — not an exhaustive list, but the tools I reach for when building real products."
-            align="left"
-          />
-        </Reveal>
+        <SectionHeader
+          darkMode={darkMode}
+          eyebrow="Capabilities"
+          title="Stack I use to go from idea to production"
+          titleId="skills-heading"
+          description="Grouped by how I think about the work — not an exhaustive list, but the tools I reach for when building real products."
+          align="left"
+        />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {skillCategories.map(({ key, title, icon: Icon, accent }, index) => (
             <motion.div
               key={key}
-              initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               whileInView={reduceMotion ? false : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.55, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={reduceMotion ? undefined : { y: -1, transition: { duration: DURATION.micro, ease: EASE } }}
+              viewport={VIEWPORT}
+              transition={{
+                duration: DURATION.revealFast,
+                delay: index * STAGGER.cards,
+                ease: EASE,
+              }}
               className={`relative overflow-hidden rounded-2xl border p-7 shadow-card ${
                 darkMode
                   ? 'border-white/[0.08] bg-zinc-900/50'

@@ -5,8 +5,10 @@ import { projectsData } from '../data/projectsData';
 import useImagePath from '../hooks/useImagePath';
 import Container from './ui/Container';
 import SectionHeader from './ui/SectionHeader';
+import SectionBridge from './ui/SectionBridge';
 import Reveal from './ui/Reveal';
 import ProjectCard from './ProjectCard';
+import { STAGGER } from '../motion/constants';
 import ProjectDetailModal from './ProjectDetailModal';
 
 const PROJECTS_INITIAL_VISIBLE = 3;
@@ -35,22 +37,21 @@ const ProjectsSection = ({ darkMode }) => {
   return (
     <section
       id="projects"
-      className={`relative scroll-mt-24 py-24 md:py-32 ${
+      className={`relative scroll-mt-24 pt-12 pb-24 md:pt-16 md:pb-32 ${
         darkMode ? 'bg-zinc-950/40' : 'bg-zinc-50'
       }`}
       aria-labelledby="projects-heading"
     >
+      <SectionBridge darkMode={darkMode} />
       <Container>
-        <Reveal>
-          <SectionHeader
-            darkMode={darkMode}
-            eyebrow="Selected work"
-            title="Products and platforms I've shipped"
-            titleId="projects-heading"
-            description="Full-stack apps, mobile experiences, and internal tools — built with attention to UX, data, and deployable architecture."
-            align="left"
-          />
-        </Reveal>
+        <SectionHeader
+          darkMode={darkMode}
+          eyebrow="Selected work"
+          title="Products and platforms I've shipped"
+          titleId="projects-heading"
+          description="Full-stack apps, mobile experiences, and internal tools — built with attention to UX, data, and deployable architecture."
+          align="left"
+        />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {visibleProjects.map((project, index) => (
@@ -60,7 +61,7 @@ const ProjectsSection = ({ darkMode }) => {
               darkMode={darkMode}
               onOpenDetails={openProjectModal}
               getImagePath={getImagePath}
-              revealDelay={index * 0.06}
+              revealDelay={index * STAGGER.cards}
             />
           ))}
         </div>

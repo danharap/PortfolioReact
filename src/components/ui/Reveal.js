@@ -1,20 +1,29 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { EASE, DURATION, VIEWPORT } from '../../motion/constants';
 
-const defaultTransition = {
-  duration: 0.65,
-  ease: [0.16, 1, 0.3, 1],
+const yPresets = {
+  default: 18,
+  subtle: 12,
+  hero: 22,
 };
 
+/**
+ * Viewport reveal: opacity + translateY. Respects prefers-reduced-motion.
+ */
 const Reveal = ({
   children,
   className = '',
   delay = 0,
-  y = 28,
+  y: yProp,
+  yPreset = 'default',
   once = true,
-  amount = 0.2,
+  amount = VIEWPORT.amount,
+  margin = VIEWPORT.margin,
+  duration = DURATION.reveal,
 }) => {
   const reduceMotion = useReducedMotion();
+  const y = yProp ?? yPresets[yPreset] ?? yPresets.default;
 
   if (reduceMotion) {
     return <div className={className}>{children}</div>;
@@ -25,8 +34,8 @@ const Reveal = ({
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, amount, margin: '-8% 0px -8% 0px' }}
-      transition={{ ...defaultTransition, delay }}
+      viewport={{ once, amount, margin }}
+      transition={{ duration, delay, ease: EASE }}
     >
       {children}
     </motion.div>

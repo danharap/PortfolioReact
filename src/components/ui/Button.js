@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { EASE, DURATION } from '../../motion/constants';
 
 const variants = {
   primary:
@@ -10,18 +12,34 @@ const variants = {
 };
 
 const Button = ({
-  as: Component = 'button',
+  as = 'button',
   variant = 'primary',
   className = '',
   children,
+  disabled,
   ...rest
-}) => (
-  <Component
-    className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950 ${variants[variant] || variants.primary} ${className}`}
-    {...rest}
-  >
-    {children}
-  </Component>
-);
+}) => {
+  const reduceMotion = useReducedMotion();
+  const MotionComp = as === 'a' ? motion.a : motion.button;
+  const suppressMotion = reduceMotion || disabled;
+
+  const motionProps = suppressMotion
+    ? {}
+    : {
+        whileHover: { y: -1, transition: { duration: DURATION.micro, ease: EASE } },
+        whileTap: { scale: 0.992, transition: { duration: 0.12 } },
+      };
+
+  return (
+    <MotionComp
+      disabled={disabled}
+      className={`inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-colors duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950 ${variants[variant] || variants.primary} ${className}`}
+      {...motionProps}
+      {...rest}
+    >
+      {children}
+    </MotionComp>
+  );
+};
 
 export default Button;

@@ -60,16 +60,14 @@ const ContactSection = ({ darkMode }) => {
       aria-labelledby="contact-heading"
     >
       <Container>
-        <Reveal>
-          <SectionHeader
-            darkMode={darkMode}
-            eyebrow="Contact"
-            title="Let’s build something worth launching"
-            titleId="contact-heading"
-            description="Open to internships, collaborations, and teams who care about craft. Tell me what you’re working on — I’ll respond personally."
-            align="left"
-          />
-        </Reveal>
+        <SectionHeader
+          darkMode={darkMode}
+          eyebrow="Contact"
+          title="Let’s build something worth launching"
+          titleId="contact-heading"
+          description="Open to internships, collaborations, and teams who care about craft. Tell me what you’re working on — I’ll respond personally."
+          align="left"
+        />
 
         <div className="mt-4 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal className="space-y-10">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { EASE, DURATION, VIEWPORT } from '../motion/constants';
 
 const ProjectCard = ({ project, darkMode, onOpenDetails, getImagePath, revealDelay = 0 }) => {
   const reduceMotion = useReducedMotion();
@@ -9,14 +10,22 @@ const ProjectCard = ({ project, darkMode, onOpenDetails, getImagePath, revealDel
   return (
     <motion.article
       layout={false}
-      initial={reduceMotion ? false : { opacity: 0, y: 36 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
       whileInView={reduceMotion ? false : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.65, delay: revealDelay, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border shadow-card transition-shadow duration-500 hover:shadow-card-hover ${
+      whileHover={
+        reduceMotion
+          ? undefined
+          : {
+              y: -3,
+              transition: { duration: DURATION.micro, ease: EASE },
+            }
+      }
+      viewport={VIEWPORT}
+      transition={{ duration: DURATION.reveal, delay: revealDelay, ease: EASE }}
+      className={`group relative flex flex-col overflow-hidden rounded-2xl border shadow-card transition-shadow duration-500 ease-out hover:shadow-card-hover ${
         darkMode
-          ? 'border-white/[0.08] bg-zinc-900/50'
-          : 'border-zinc-200/80 bg-white'
+          ? 'border-white/[0.08] bg-zinc-900/50 hover:border-white/[0.1]'
+          : 'border-zinc-200/80 bg-white hover:border-zinc-300/80'
       }`}
     >
       <button
@@ -37,9 +46,11 @@ const ProjectCard = ({ project, darkMode, onOpenDetails, getImagePath, revealDel
               alt={`${project.title} preview`}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover"
-              whileHover={reduceMotion ? undefined : { scale: 1.03 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full w-full object-cover transition-[filter] duration-500 ease-out group-hover:brightness-[1.03]"
+              initial={reduceMotion ? false : { opacity: 0.94, scale: 1.012 }}
+              whileInView={reduceMotion ? false : { opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: DURATION.reveal, delay: revealDelay * 0.25, ease: EASE }}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-600 to-violet-700 text-5xl text-white">
@@ -47,7 +58,7 @@ const ProjectCard = ({ project, darkMode, onOpenDetails, getImagePath, revealDel
             </div>
           )}
           <div
-            className={`pointer-events-none absolute inset-0 bg-gradient-to-t opacity-60 transition-opacity duration-500 group-hover:opacity-80 ${
+            className={`pointer-events-none absolute inset-0 bg-gradient-to-t opacity-55 transition-opacity duration-500 group-hover:opacity-70 ${
               darkMode ? 'from-zinc-950 via-transparent' : 'from-zinc-900/80 via-transparent'
             }`}
             aria-hidden

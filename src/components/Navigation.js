@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Moon, Sun, Menu, X } from 'lucide-react';
-import { motion, LayoutGroup, useReducedMotion } from 'framer-motion';
+import { motion, LayoutGroup, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import Container from './ui/Container';
 
 const navItems = [
@@ -20,16 +20,17 @@ const Navigation = ({
   scrollToSection,
 }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 44,
+    mass: 0.28,
+  });
 
   useEffect(() => {
     const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 24);
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - doc.clientHeight;
-      setScrollProgress(max > 0 ? Math.min(1, y / max) : 0);
+      setScrolled(window.scrollY > 24);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -48,10 +49,8 @@ const Navigation = ({
     <>
       {!reduceMotion && (
         <motion.div
-          className="fixed left-0 right-0 top-0 z-50 h-0.5 origin-left bg-gradient-to-r from-blue-500 via-violet-500 to-blue-400"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: scrollProgress }}
-          transition={{ duration: 0.12 }}
+          className="fixed left-0 right-0 top-0 z-50 h-px origin-left bg-gradient-to-r from-blue-500/70 via-violet-500/60 to-blue-400/70"
+          style={{ scaleX: smoothProgress }}
         />
       )}
 
@@ -76,7 +75,7 @@ const Navigation = ({
               {navItems.map(({ id, label }) => {
                 const active = activeSection === id;
                 return (
-                  <button
+                  <motion.button
                     key={id}
                     type="button"
                     onClick={() => scrollToSection(id)}
@@ -107,7 +106,7 @@ const Navigation = ({
                       />
                     )}
                     {label}
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>

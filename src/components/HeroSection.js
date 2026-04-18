@@ -3,22 +3,35 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Mail, MapPin, Download, ArrowDownRight, Github, Linkedin } from 'lucide-react';
 import Container from './ui/Container';
 import Button from './ui/Button';
+import { EASE, DURATION, STAGGER } from '../motion/constants';
 
 const container = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.08 },
+    transition: {
+      staggerChildren: STAGGER.heroChildren,
+      delayChildren: STAGGER.heroDelay,
+    },
   },
 };
 
 const item = (reduce) => ({
-  hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 },
+  hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
   show: {
     opacity: 1,
     y: 0,
     transition: reduce
       ? { duration: 0 }
-      : { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+      : { duration: DURATION.reveal, ease: EASE },
+  },
+});
+
+const socialIcon = (reduce) => ({
+  hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: reduce ? { duration: 0 } : { duration: DURATION.revealFast, ease: EASE },
   },
 });
 
@@ -31,7 +44,15 @@ const HeroSection = ({ darkMode, scrollToSection }) => {
       className="relative flex min-h-screen items-center pt-24 pb-20 md:pt-28 md:pb-28"
       aria-labelledby="hero-heading"
     >
-      <Container>
+      {/* Bottom ramp into selected work — same ink base, introduces next-section surface tone */}
+      <div
+        className={`pointer-events-none absolute inset-x-0 bottom-0 z-0 h-40 bg-gradient-to-b from-transparent via-transparent md:h-52 ${
+          darkMode ? 'to-zinc-950/28' : 'to-zinc-200/30'
+        }`}
+        aria-hidden
+      />
+
+      <Container className="relative z-[1]">
         <motion.div
           className="mx-auto max-w-4xl text-center"
           variants={container}
@@ -118,10 +139,19 @@ const HeroSection = ({ darkMode, scrollToSection }) => {
           </motion.div>
 
           <motion.div
-            variants={item(reduceMotion)}
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.04,
+                  delayChildren: 0.02,
+                },
+              },
+            }}
             className="mt-14 flex items-center justify-center gap-4"
           >
-            <a
+            <motion.a
+              variants={socialIcon(reduceMotion)}
               href="https://github.com/danharap"
               target="_blank"
               rel="noopener noreferrer"
@@ -133,8 +163,9 @@ const HeroSection = ({ darkMode, scrollToSection }) => {
               aria-label="GitHub"
             >
               <Github size={22} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              variants={socialIcon(reduceMotion)}
               href="https://www.linkedin.com/in/danielharapiak/"
               target="_blank"
               rel="noopener noreferrer"
@@ -146,8 +177,9 @@ const HeroSection = ({ darkMode, scrollToSection }) => {
               aria-label="LinkedIn"
             >
               <Linkedin size={22} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              variants={socialIcon(reduceMotion)}
               href="mailto:daniel@harapiak.com"
               className={`rounded-full p-3 transition-colors ${
                 darkMode
@@ -157,7 +189,7 @@ const HeroSection = ({ darkMode, scrollToSection }) => {
               aria-label="Email"
             >
               <Mail size={22} />
-            </a>
+            </motion.a>
           </motion.div>
 
           {!reduceMotion && (
