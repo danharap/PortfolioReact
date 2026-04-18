@@ -351,7 +351,7 @@ export const projectsData = [
       "TMDb API",
       "Vercel",
     ],
-    liveDemo: null,
+    liveDemo: "https://nudgefilm.vercel.app",
     github: "https://github.com/danharap/NudgeFilm",
     image: "/images/nudgefilm/Thumbnail.png",
     details: {
